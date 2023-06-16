@@ -3,73 +3,39 @@
     <h1>Catalog</h1>
     <div class="v-catalog__list">
       <v-catalog-item
-        v-for="product in products"
+        v-for="product in PRODUCTS"
         :key="product.article"
-        :product_data="product"
+        :product="product"
+        @sendDataToParent="showChaldArticle"
       />
     </div>
   </div>
 </template>
 
 <script>
-import vCatalogItem from "./v-catalog-item.vue";
+import vCatalogItem from './v-catalog-item.vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: "v-catalog",
+  name: 'v-catalog',
   components: {
     vCatalogItem,
   },
-  props: {
-    propName: {},
-    data() {
-      return {
-        products: [
-          {
-            image: "/src/assets/images/1.jpg",
-            name: "T-shirt 1",
-            price: 2100.234234234,
-            article: "T1",
-            available: true,
-          },
-          {
-            image: "/src/assets/images/2.jpg",
-            name: "T-shirt 2",
-            price: 3150.12312412,
-            article: "T2",
-            available: true,
-          },
-          {
-            image: "/src/assets/images/3.jpg",
-            name: "T-shirt 3",
-            price: 4200.51524,
-            article: "T3",
-            available: false,
-          },
-          {
-            image: "/src/assets/images/4.jpg",
-            name: "T-shirt 4",
-            price: 5300.1245512,
-            article: "T4",
-            available: true,
-          },
-          {
-            image: "/src/assets/images/5.jpg",
-            name: "T-shirt 5",
-            price: 6500.3522314,
-            article: "T5",
-            available: false,
-          },
-          {
-            image: "/src/assets/images/6.jpeg",
-            name: "T-shirt 6",
-            price: 8700.4124123,
-            article: "T6",
-            available: true,
-          },
-        ],
-      };
+  props: {},
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapActions(['GET_PRODUCTS_FROM_API']),
+    showChaldArticle(data) {
+      console.log(data);
     },
-    computed: {},
+  },
+  computed: {
+    ...mapGetters(['PRODUCTS']),
+  },
+  mounted() {
+    this.GET_PRODUCTS_FROM_API();
   },
 };
 </script>
