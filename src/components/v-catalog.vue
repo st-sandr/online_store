@@ -6,7 +6,7 @@
         v-for="product in PRODUCTS"
         :key="product.article"
         :product="product"
-        @sendDataToParent="showChaldArticle"
+        @addToCart="addToCart"
       />
     </div>
   </div>
@@ -26,9 +26,9 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(['GET_PRODUCTS_FROM_API']),
-    showChaldArticle(data) {
-      console.log(data);
+    ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART']),
+    addToCart(data) {
+      this.ADD_TO_CART(data);
     },
   },
   computed: {

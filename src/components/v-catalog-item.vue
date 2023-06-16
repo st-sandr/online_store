@@ -7,7 +7,7 @@
     />
     <p class="v-catalog-item__name">{{ product.name }}</p>
     <p class="v-catalog-item__price">{{ product.price }} ₽</p>
-    <button class="v-catalog-item__card_btn btn" @click="sendDataToParent">
+    <button class="v-catalog-item__card_btn btn" @click="addToCart">
       Add to cart
     </button>
   </div>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "v-catalog-item",
+  name: 'v-catalog-item',
   props: {
     product: {
       type: Object,
@@ -25,8 +25,8 @@ export default {
     return {};
   },
   methods: {
-    sendDataToParent() {
-      this.$emit("sendDataToParent", this.product.article);
+    addToCart() {
+      this.$emit('addToCart', this.product);
     },
   },
 };
