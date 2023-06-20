@@ -32,7 +32,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['PRODUCTS']),
+    ...mapGetters(['PRODUCTS', 'CART']),
   },
   mounted() {
     this.GET_PRODUCTS_FROM_API();
@@ -47,6 +47,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
   }
 }
 </style>
