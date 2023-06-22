@@ -7,12 +7,14 @@
             <a href="" class="nav-link">Главная</a>
           </li>
           <li class="v-header__nav-item">
-            <a href="" class="nav-link">Каталог</a>
+            <router-link :to="{ name: 'catalog' }" class="nav-link"
+              >Каталог</router-link
+            >
           </li>
         </ul>
       </nav>
-      <router-link :to="{ name: 'cart', params: { cart_data: CART } }"
-        ><span class="v-header__icon"><div></div></span
+      <router-link :to="{ name: 'cart' }"
+        ><span class="v-header__icon"></span
       ></router-link>
     </div>
   </header>
@@ -26,6 +28,7 @@ export default {
   computed: {
     ...mapGetters(['CART']),
   },
+  methods: {},
 };
 </script>
 

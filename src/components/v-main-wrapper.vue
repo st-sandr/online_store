@@ -9,7 +9,6 @@
 <script>
 // import vCatalog from './v-catalog.vue';
 // import vCart from './v-cart.vue';
-import { mapGetters } from 'vuex';
 
 export default {
   name: 'v-name-wrapper',
@@ -20,9 +19,7 @@ export default {
       title: 'Main wrapper',
     };
   },
-  computed: {
-    ...mapGetters(['CART']),
-  },
+  computed: {},
   methods: {},
   watch: {},
   mounted() {},

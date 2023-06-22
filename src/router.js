@@ -6,7 +6,7 @@ export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/',
+      path: '/catalog',
       name: 'catalog',
       component: vCatalog,
     },
