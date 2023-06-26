@@ -1,6 +1,6 @@
 <template>
   <div class="v-filters-menu">
-    <v-select
+    <v-accordion
       :options="categories"
       :selected="selected"
       @select="sortByCategories"
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import vSelect from './v-select.vue';
+import vAccordion from './v-accordion .vue';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'v-filters-menu',
   components: {
-    vSelect,
+    vAccordion,
   },
   data() {
     return {
@@ -52,7 +52,6 @@ export default {
 .v-filters-menu {
   display: flex;
   flex-direction: column;
-  width: 250px;
-  margin-right: 50px;
+  width: 22%;
 }
 </style>

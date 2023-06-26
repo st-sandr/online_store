@@ -13,8 +13,8 @@
           </li>
         </ul>
       </nav>
-      <router-link :to="{ name: 'cart' }"
-        ><span class="v-header__icon"></span
+      <router-link :to="{ name: 'cart' }" class="nav-link"
+        ><button class="v-header__icon"></button
       ></router-link>
     </div>
   </header>
@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style lang="scss">
+.nav-link:visited {
+  color: inherit;
+}
 .v-header {
   height: 80px;
   box-sizing: border-box;
@@ -64,6 +67,8 @@ export default {
     width: 30px;
   }
   &__icon {
+    border: none;
+    margin: 10px;
     display: inline-block;
     background-size: contain;
     background-repeat: no-repeat;
@@ -72,6 +77,7 @@ export default {
     width: 25px;
     height: 25px;
     background-image: url('@/assets/icons/cart.svg');
+    cursor: pointer;
   }
 }
 </style>

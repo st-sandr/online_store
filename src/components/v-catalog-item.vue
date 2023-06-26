@@ -5,10 +5,12 @@
       :src="require('@/assets/images/' + product.image)"
       alt="img"
     />
-    <p class="v-catalog-item__name">{{ product.name }}</p>
-    <p class="v-catalog-item__price">{{ product.price }} ₽</p>
+    <div class="v-catalog-item__info">
+      <p class="v-catalog-item__name">{{ product.name }}</p>
+      <p class="v-catalog-item__price">{{ product.price }} ₽</p>
+    </div>
     <button class="v-catalog-item__card_btn btn" @click="addToCart">
-      Add to cart
+      Добавить в карзину
     </button>
   </div>
 </template>
@@ -37,14 +39,33 @@ export default {
 
 <style lang="scss">
 .v-catalog-item {
-  flex: 1 1 31%;
-  max-width: 31%;
+  display: flex;
+  flex: 1 1 30%;
+  flex-direction: column;
+  max-width: 30%;
+  height: 320px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0 #e0e0e0;
   padding: $padding * 2;
   margin-bottom: 30px;
+  justify-content: space-between;
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 20px;
+  }
   &__image {
-    width: 100px;
+    object-fit: contain;
+    height: 200px;
+  }
+  &__card_btn {
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+  }
+  &__card_btn:hover {
+    background-color: #e0e0e0;
   }
 }
 .v-catalog-item:not(:nth-child(3n + 3)) {

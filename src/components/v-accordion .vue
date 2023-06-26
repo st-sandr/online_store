@@ -1,5 +1,5 @@
 <template>
-  <div class="v-select">
+  <div class="v-accordion">
     <p class="title" @click="areOptionsVisible = !areOptionsVisible">
       {{ selected }}
     </p>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'v-select',
+  name: 'v-accordion ',
   props: {
     options: {
       type: Array,
@@ -30,52 +30,46 @@ export default {
   },
   data() {
     return {
-      areOptionsVisible: false,
+      areOptionsVisible: true,
     };
   },
   methods: {
     selectOption(option) {
       this.$emit('select', option);
-      this.areOptionsVisible = false;
     },
     hideSelect() {
       this.areOptionsVisible = false;
     },
   },
-  mounted() {
-    document.addEventListener('click', this.hideSelect.bind(this), true);
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.hideSelect);
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-.v-select {
+.v-accordion {
   position: relative;
   width: 100%;
   cursor: pointer;
+  text-align: left;
 }
 .title {
-  border: solid 1px grey;
-  padding: 8px;
+  border: solid 1px #e4e4e4;
+  padding: 8px 16px;
 }
-.v-select p {
+.v-accordion p {
   margin: 0;
 }
 .options {
-  border: solid 1px grey;
+  border: solid 1px #e4e4e4;
   position: absolute;
   top: 40px;
   right: 0;
   width: 100%;
-  padding: 8px;
+  padding: 8px 16px;
   &__element {
-    padding: 4px;
+    padding: 8px;
   }
 }
 .options p:hover {
-  background: #e7e7e7;
+  background: #e4e4e4;
 }
 </style>

@@ -1,15 +1,13 @@
 <template>
   <div class="v-catalog">
-    <div class="v-catalog__filters">
-      <v-filters-menu />
-      <div class="v-catalog__list">
-        <v-catalog-item
-          v-for="product in filteredProducts"
-          :key="product.article"
-          :product="product"
-          @addToCart="addToCart"
-        />
-      </div>
+    <v-filters-menu class="v-catalog__filters" />
+    <div class="v-catalog__list">
+      <v-catalog-item
+        v-for="product in filteredProducts"
+        :key="product.article"
+        :product="product"
+        @addToCart="addToCart"
+      />
     </div>
   </div>
 </template>
@@ -34,6 +32,8 @@ export default {
         { name: 'Женские', value: 'ж' },
       ],
       selected: 'Все',
+      page: 1,
+      limit: 9,
     };
   },
   methods: {
@@ -60,16 +60,16 @@ export default {
 
 <style lang="scss">
 .v-catalog {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
   &__list {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    flex: 1 1 auto;
+    width: 75%;
   }
   &__filters {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
+    width: 20%;
   }
 }
 </style>
