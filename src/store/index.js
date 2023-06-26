@@ -4,11 +4,15 @@ import axios from 'axios';
 export default createStore({
   state: {
     products: [],
+    sortedProducts: [],
     cart: [],
   },
   getters: {
     PRODUCTS(state) {
       return state.products;
+    },
+    SORTED_PRODUCTS(state) {
+      return state.sortedProducts;
     },
     CART(state) {
       return state.cart;
@@ -45,6 +49,14 @@ export default createStore({
         state.cart[index].quantity--;
       } else state.cart.splice(index, 1);
     },
+    CATEGORIES_SORT: (state, option) => {
+      state.sortedProducts = [];
+      state.products.map((item) => {
+        if (item.category === option.name) {
+          state.sortedProducts.push(item);
+        }
+      });
+    },
   },
   actions: {
     GET_PRODUCTS_FROM_API({ commit }) {
@@ -64,6 +76,9 @@ export default createStore({
     },
     DECREMENT_CART_ITEM({ commit }, index) {
       commit('DECREMENT', index);
+    },
+    SORT_BY_CATEGORIES({ commit }, option) {
+      commit('CATEGORIES_SORT', option);
     },
   },
   modules: {},

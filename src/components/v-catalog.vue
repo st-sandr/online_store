@@ -1,32 +1,29 @@
 <template>
   <div class="v-catalog">
-    <h1>Catalog</h1>
-    <v-select
-      :options="categories"
-      :selected="selected"
-      @select="sortByCategories"
-    />
-    <div class="v-catalog__list">
-      <v-catalog-item
-        v-for="product in filteredProducts"
-        :key="product.article"
-        :product="product"
-        @addToCart="addToCart"
-      />
+    <div class="v-catalog__filters">
+      <v-filters-menu />
+      <div class="v-catalog__list">
+        <v-catalog-item
+          v-for="product in filteredProducts"
+          :key="product.article"
+          :product="product"
+          @addToCart="addToCart"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import vCatalogItem from './v-catalog-item.vue';
-import vSelect from './v-select.vue';
+import vFiltersMenu from './v-filters-menu.vue';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'v-catalog',
   components: {
     vCatalogItem,
-    vSelect,
+    vFiltersMenu,
   },
   props: {},
   data() {
@@ -37,7 +34,6 @@ export default {
         { name: 'Женские', value: 'ж' },
       ],
       selected: 'Все',
-      sortedProducts: [],
     };
   },
   methods: {
@@ -45,21 +41,12 @@ export default {
     addToCart(data) {
       this.ADD_TO_CART(data);
     },
-    sortByCategories(option) {
-      this.sortedProducts = [];
-      this.PRODUCTS.map((item) => {
-        if (item.category === option.name) {
-          this.sortedProducts.push(item);
-        }
-      });
-      this.selected = option.name;
-    },
   },
   computed: {
-    ...mapGetters(['PRODUCTS', 'CART']),
+    ...mapGetters(['PRODUCTS', 'CART', 'SORTED_PRODUCTS']),
     filteredProducts() {
-      if (this.sortedProducts.length) {
-        return this.sortedProducts;
+      if (this.SORTED_PRODUCTS.length) {
+        return this.SORTED_PRODUCTS;
       } else {
         return this.PRODUCTS;
       }
@@ -77,7 +64,12 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    flex: 1 1 auto;
+  }
+  &__filters {
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
   }
 }
 </style>

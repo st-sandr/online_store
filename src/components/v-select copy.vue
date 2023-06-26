@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'v-select',
+  name: 'v-small-select',
   props: {
     options: {
       type: Array,
