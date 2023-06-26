@@ -44,9 +44,6 @@ export default {
       this.$emit('decrement');
     },
   },
-  mounted() {
-    // this.addQty();
-  },
 };
 </script>
 

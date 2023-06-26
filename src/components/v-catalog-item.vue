@@ -37,13 +37,17 @@ export default {
 
 <style lang="scss">
 .v-catalog-item {
-  flex-basis: 30%;
+  flex: 1 1 31%;
+  max-width: 31%;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0 #e0e0e0;
   padding: $padding * 2;
-  margin-bottom: $margin * 4;
+  margin-bottom: 30px;
   &__image {
     width: 100px;
   }
+}
+.v-catalog-item:not(:nth-child(3n + 3)) {
+  margin-right: 30px;
 }
 </style>
