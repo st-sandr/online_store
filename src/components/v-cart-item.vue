@@ -74,7 +74,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
   }
   &__content {
     display: flex;
@@ -84,7 +84,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     margin-left: $margin * 4;
-    align-items: start;
+    align-items: flex-start;
     &__title {
       text-align: start;
     }

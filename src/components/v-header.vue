@@ -48,8 +48,8 @@ export default {
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: $padding * 2;
+    padding-right: $padding * 2;
   }
   &__nav-list {
     display: flex;
@@ -57,11 +57,17 @@ export default {
     list-style: none;
   }
   &__nav-item {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1;
-  }
-  &__nav-item:not(:last-child) {
-    margin-right: 50px;
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+    &:hover {
+      color: #0c625a;
+    }
+    &:active {
+      color: #08443e;
+    }
   }
   &__icon {
     width: 30px;

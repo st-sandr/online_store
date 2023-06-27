@@ -1,13 +1,29 @@
 <template>
   <div class="v-catalog">
-    <v-filters-menu class="v-catalog__filters" />
+    <v-filters-menu
+      class="v-catalog__filters"
+      @change_category="changePage(1)"
+    />
     <div class="v-catalog__list">
       <v-catalog-item
-        v-for="product in filteredProducts"
+        v-for="product in paginatedProducts"
         :key="product.article"
         :product="product"
         @addToCart="addToCart"
       />
+      <paginate
+        v-model="page"
+        :page-count="pageCounts"
+        :page-range="3"
+        :margin-pages="2"
+        :click-handler="changePage"
+        :prev-text="'Назад'"
+        :next-text="'Вперед'"
+        :container-class="'pagination'"
+        :page-class="'page-item'"
+        :page-link-class="'page-link'"
+      >
+      </paginate>
     </div>
   </div>
 </template>
@@ -16,30 +32,38 @@
 import vCatalogItem from './v-catalog-item.vue';
 import vFiltersMenu from './v-filters-menu.vue';
 import { mapActions, mapGetters } from 'vuex';
+import Paginate from 'vuejs-paginate-next';
 
 export default {
   name: 'v-catalog',
   components: {
     vCatalogItem,
     vFiltersMenu,
+    paginate: Paginate,
   },
   props: {},
   data() {
     return {
-      categories: [
-        { name: 'Все', value: 'all' },
-        { name: 'Мужские', value: 'м' },
-        { name: 'Женские', value: 'ж' },
-      ],
-      selected: 'Все',
+      pagination_items_per_page: 9,
       page: 1,
-      limit: 9,
+      paginated_product: [],
     };
   },
   methods: {
     ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART']),
     addToCart(data) {
       this.ADD_TO_CART(data);
+    },
+    changePage(page_nam) {
+      this.page = page_nam;
+      this.pagination_offset =
+        this.pagination_items_per_page * page_nam -
+        this.pagination_items_per_page;
+
+      this.paginated_product = JSON.parse(
+        JSON.stringify(this.filteredProducts)
+      ).splice(this.pagination_offset, this.pagination_items_per_page);
+      window.scrollTo(0, 0);
     },
   },
   computed: {
@@ -50,6 +74,22 @@ export default {
       } else {
         return this.PRODUCTS;
       }
+    },
+    paginatedProducts() {
+      if (this.paginated_product.length) {
+        return this.paginated_product;
+      } else {
+        this.paginated_product = JSON.parse(
+          JSON.stringify(this.filteredProducts)
+        ).splice(0, this.pagination_items_per_page);
+
+        return this.paginated_product;
+      }
+    },
+    pageCounts() {
+      return Math.ceil(
+        this.filteredProducts.length / this.pagination_items_per_page
+      );
     },
   },
   mounted() {
@@ -67,9 +107,30 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 75%;
+    justify-content: space-between;
   }
   &__filters {
     width: 20%;
   }
+}
+.pagination {
+  display: flex;
+  margin: $margin;
+  list-style-type: none;
+}
+
+.page-item {
+  padding: $padding 0;
+  border-radius: $radius;
+  &:hover {
+    background-color: $is_hover;
+  }
+  &:active {
+    background-color: $is_activ;
+  }
+}
+.page-link {
+  padding: $padding;
+  cursor: pointer;
 }
 </style>

@@ -50,10 +50,11 @@ export default {
   width: 100%;
   cursor: pointer;
   text-align: left;
+  font-size: 14px;
 }
 .title {
   border: solid 1px #e4e4e4;
-  padding: 8px 16px;
+  padding: $padding $padding * 2;
 }
 .v-accordion p {
   margin: 0;
@@ -64,12 +65,16 @@ export default {
   top: 40px;
   right: 0;
   width: 100%;
-  padding: 8px 16px;
+  padding: $padding $padding * 2;
   &__element {
-    padding: 8px;
+    padding: $padding;
+    border-radius: 5px;
+    &:hover {
+      background: #e0e0e0;
+    }
+    &:active {
+      background: #d3d0d0;
+    }
   }
-}
-.options p:hover {
-  background: #e4e4e4;
 }
 </style>

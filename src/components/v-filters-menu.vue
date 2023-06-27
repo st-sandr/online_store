@@ -10,7 +10,7 @@
 
 <script>
 import vAccordion from './v-accordion .vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'v-filters-menu',
@@ -25,7 +25,6 @@ export default {
         { name: 'Женские', value: 'ж' },
       ],
       selected: 'Все',
-      sortedProducts: [],
     };
   },
   methods: {
@@ -33,16 +32,7 @@ export default {
     sortByCategories(option) {
       this.SORT_BY_CATEGORIES(option);
       this.selected = option.name;
-    },
-  },
-  computed: {
-    ...mapGetters(['PRODUCTS', 'SORTED_PRODUCTS']),
-    filteredProducts() {
-      if (this.SORTED_PRODUCTS.length) {
-        return this.SORTED_PRODUCTS;
-      } else {
-        return this.PRODUCTS;
-      }
+      this.$emit('change_category');
     },
   },
 };
