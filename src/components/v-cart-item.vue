@@ -32,7 +32,7 @@
     </div>
     <div class="v-cart-item__cost">
       <button class="v-cart-item__btn" @click="deleteFromCart"></button>
-      <p>{{ cart_item_data.price * cart_item_data.quantity }}</p>
+      <h3>{{ cart_item_data.price * cart_item_data.quantity }}</h3>
     </div>
   </div>
 </template>

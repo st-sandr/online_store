@@ -40,9 +40,9 @@ export default {
 <style lang="scss">
 .v-catalog-item {
   display: flex;
-  flex: 1 1 31%;
+  flex: 1 1 30%;
+  max-width: 30%;
   flex-direction: column;
-  max-width: 31%;
   height: 320px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0 #e0e0e0;
@@ -71,7 +71,22 @@ export default {
     }
   }
 }
-.v-catalog-item:not(:nth-child(3n + 3)) {
-  margin-right: 30px;
+// .v-catalog-item:not(:nth-child(3n + 3)) {
+//   margin-right: 30px;
+// }
+@media (min-width: 600px) and (max-width: 992px) {
+  .v-catalog-item {
+    flex: 1 1 47%;
+    max-width: 47%;
+  }
+  // .v-catalog-item:not(:nth-child(2n + 1)) {
+  //   margin-right: 10px;
+  // }
+}
+@media (max-width: 599px) {
+  .v-catalog-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
 </style>

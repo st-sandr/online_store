@@ -108,6 +108,7 @@ export default {
     flex-wrap: wrap;
     width: 75%;
     justify-content: space-between;
+    column-gap: 5%;
   }
   &__filters {
     width: 20%;
@@ -117,6 +118,7 @@ export default {
   display: flex;
   margin: $margin;
   list-style-type: none;
+  align-items: flex-end;
 }
 
 .page-item {
@@ -132,5 +134,11 @@ export default {
 .page-link {
   padding: $padding;
   cursor: pointer;
+}
+@media (max-width: 599px) {
+  .v-catalog {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

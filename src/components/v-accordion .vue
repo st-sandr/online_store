@@ -1,9 +1,12 @@
 <template>
   <div class="v-accordion">
-    <p class="title" @click="areOptionsVisible = !areOptionsVisible">
+    <p
+      class="v-accordion__title"
+      @click="areOptionsVisible = !areOptionsVisible"
+    >
       {{ selected }}
     </p>
-    <div class="options" v-if="areOptionsVisible">
+    <div class="v-accordion__options" v-if="areOptionsVisible">
       <p
         class="options__element"
         v-for="option in options"
@@ -44,36 +47,35 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .v-accordion {
   position: relative;
   width: 100%;
   cursor: pointer;
   text-align: left;
   font-size: 14px;
-}
-.title {
-  border: solid 1px #e4e4e4;
-  padding: $padding $padding * 2;
-}
-.v-accordion p {
-  margin: 0;
-}
-.options {
-  border: solid 1px #e4e4e4;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  width: 100%;
-  padding: $padding $padding * 2;
-  &__element {
-    padding: $padding;
-    border-radius: 5px;
-    &:hover {
-      background: #e0e0e0;
-    }
-    &:active {
-      background: #d3d0d0;
+  &__title {
+    border: solid 1px $border_color;
+    padding: $padding $padding * 2;
+  }
+  &__options {
+    border: solid 1px $border_color;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+    padding: $padding $padding * 2;
+    background-color: white;
+    &__element {
+      margin: 0;
+      padding: $padding;
+      border-radius: 5px;
+      &:hover {
+        background: $is_hover;
+      }
+      &:active {
+        background: $is_activ;
+      }
     }
   }
 }
