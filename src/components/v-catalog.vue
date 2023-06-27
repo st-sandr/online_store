@@ -4,13 +4,15 @@
       class="v-catalog__filters"
       @change_category="changePage(1)"
     />
-    <div class="v-catalog__list">
-      <v-catalog-item
-        v-for="product in paginatedProducts"
-        :key="product.article"
-        :product="product"
-        @addToCart="addToCart"
-      />
+    <div class="v-catalog__wrapper">
+      <div class="v-catalog__wrapper__list">
+        <v-catalog-item
+          v-for="product in paginatedProducts"
+          :key="product.article"
+          :product="product"
+          @addToCart="addToCart"
+        />
+      </div>
       <paginate
         v-model="page"
         :page-count="pageCounts"
@@ -22,8 +24,7 @@
         :container-class="'pagination'"
         :page-class="'page-item'"
         :page-link-class="'page-link'"
-      >
-      </paginate>
+      />
     </div>
   </div>
 </template>
@@ -103,17 +104,23 @@ export default {
   display: flex;
   margin-top: 30px;
   justify-content: space-between;
-  &__list {
+  &__wrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 75%;
-    justify-content: space-between;
-    column-gap: 5%;
+    align-items: center;
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      column-gap: 5%;
+    }
   }
   &__filters {
     width: 20%;
   }
 }
+
 .pagination {
   display: flex;
   margin: $margin;

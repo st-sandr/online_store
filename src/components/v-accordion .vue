@@ -8,7 +8,7 @@
     </p>
     <div class="v-accordion__options" v-if="areOptionsVisible">
       <p
-        class="options__element"
+        class="v-accordion__options__element"
         v-for="option in options"
         :key="option.value"
         @click="selectOption(option)"
