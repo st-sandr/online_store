@@ -32,7 +32,6 @@ export default {
     sortByCategories(option) {
       this.SORT_BY_CATEGORIES(option);
       this.selected = option.name;
-      this.$emit('change_category');
     },
   },
 };

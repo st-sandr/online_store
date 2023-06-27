@@ -1,9 +1,6 @@
 <template>
   <div class="v-catalog">
-    <v-filters-menu
-      class="v-catalog__filters"
-      @change_category="changePage(1)"
-    />
+    <v-filters-menu class="v-catalog__filters" />
     <div class="v-catalog__wrapper">
       <div class="v-catalog__wrapper__list">
         <v-catalog-item
@@ -95,6 +92,11 @@ export default {
   },
   mounted() {
     this.GET_PRODUCTS_FROM_API();
+  },
+  watch: {
+    SORTED_PRODUCTS() {
+      this.changePage(1);
+    },
   },
 };
 </script>
