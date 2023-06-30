@@ -29,8 +29,9 @@
 <script>
 import vCatalogItem from './v-catalog-item.vue';
 import vFiltersMenu from './v-filters-menu.vue';
-import { mapActions, mapGetters } from 'vuex';
 import Paginate from 'vuejs-paginate-next';
+import { ref, onMounted, watch, computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   name: 'v-catalog',
@@ -39,64 +40,72 @@ export default {
     vFiltersMenu,
     paginate: Paginate,
   },
-  props: {},
-  data() {
-    return {
-      pagination_items_per_page: 9,
-      page: 1,
-      paginated_product: [],
+
+  setup() {
+    const store = useStore();
+    const paginated_product = ref([]);
+    const page = ref(1);
+    const items_per_page = 9;
+
+    const getProducts = () => {
+      store.dispatch('GET_PRODUCTS_FROM_API');
     };
-  },
-  methods: {
-    ...mapActions(['GET_PRODUCTS_FROM_API', 'ADD_TO_CART']),
-    addToCart(data) {
-      this.ADD_TO_CART(data);
-    },
-    changePage(page_nam) {
-      this.page = page_nam;
-      this.pagination_offset =
-        this.pagination_items_per_page * page_nam -
-        this.pagination_items_per_page;
 
-      this.paginated_product = JSON.parse(
-        JSON.stringify(this.filteredProducts)
-      ).splice(this.pagination_offset, this.pagination_items_per_page);
+    const addToCart = (data) => {
+      store.dispatch('ADD_TO_CART', data);
+    };
+
+    const changePage = (page_nam) => {
+      page.value = page_nam;
+      let pagination_offset = items_per_page * page_nam - items_per_page;
+
+      paginated_product.value = JSON.parse(
+        JSON.stringify(filteredProducts.value)
+      ).splice(pagination_offset, items_per_page);
       window.scrollTo(0, 0);
-    },
-  },
-  computed: {
-    ...mapGetters(['PRODUCTS', 'CART', 'SORTED_PRODUCTS']),
-    filteredProducts() {
-      if (this.SORTED_PRODUCTS.length) {
-        return this.SORTED_PRODUCTS;
-      } else {
-        return this.PRODUCTS;
-      }
-    },
-    paginatedProducts() {
-      if (this.paginated_product.length) {
-        return this.paginated_product;
-      } else {
-        this.paginated_product = JSON.parse(
-          JSON.stringify(this.filteredProducts)
-        ).splice(0, this.pagination_items_per_page);
+    };
 
-        return this.paginated_product;
+    const filteredProducts = computed(() => {
+      if (store.state.sortedProducts.length) {
+        return store.state.sortedProducts;
+      } else {
+        return store.state.products;
       }
-    },
-    pageCounts() {
-      return Math.ceil(
-        this.filteredProducts.length / this.pagination_items_per_page
-      );
-    },
-  },
-  mounted() {
-    this.GET_PRODUCTS_FROM_API();
-  },
-  watch: {
-    SORTED_PRODUCTS() {
-      this.changePage(1);
-    },
+    });
+
+    const paginatedProducts = computed(() => {
+      if (paginated_product.value.length) {
+        return paginated_product.value;
+      } else {
+        paginated_product.value = JSON.parse(
+          JSON.stringify(filteredProducts.value)
+        ).splice(0, items_per_page);
+        return paginated_product.value;
+      }
+    });
+
+    const pageCounts = computed(() => {
+      return Math.ceil(filteredProducts.value.length / items_per_page);
+    });
+
+    onMounted(() => {
+      getProducts();
+    });
+
+    watch(
+      () => store.state.sortedProducts,
+      () => {
+        changePage(1);
+      }
+    );
+
+    return {
+      page,
+      paginatedProducts,
+      pageCounts,
+      addToCart,
+      changePage,
+    };
   },
 };
 </script>

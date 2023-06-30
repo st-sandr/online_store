@@ -21,14 +21,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
-  name: 'v-navbar',
-  computed: {
-    ...mapGetters(['CART']),
-  },
-  methods: {},
+  name: 'v-header',
 };
 </script>
 

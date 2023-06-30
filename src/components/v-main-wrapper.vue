@@ -7,16 +7,6 @@
 <script>
 export default {
   name: 'v-name-wrapper',
-  props: {},
-  data() {
-    return {
-      title: 'Main wrapper',
-    };
-  },
-  computed: {},
-  methods: {},
-  watch: {},
-  mounted() {},
 };
 </script>
 
