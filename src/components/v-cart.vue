@@ -1,58 +1,47 @@
 <template>
   <div class="v-cart">
     <h1>Корзина</h1>
-    <p class="v-cart__empty-cart-text" v-if="!CART.length">
+    <p class="v-cart__empty-cart-text" v-if="!cart.length">
       Добавьте товар в корзину...
     </p>
     <v-cart-item
-      v-for="(item, index) in CART"
+      v-for="(item, index) in cart"
       :key="item.article"
-      :cart_item_data="item"
-      @deleteFromCart="deleteFromCart(index)"
+      :cartItem="item"
+      @removeFromCart="removeFromCart(index)"
       @increment="increment(index)"
       @decrement="decrement(index)"
     />
-    <div v-if="CART.length" class="v-cart__total">
-      <div class="v-cart__total__price">Итого: {{ cartToralCost }} ₽</div>
+    <div v-if="cart.length" class="v-cart__total">
+      <div class="v-cart__total__price">Итого: {{ cartTotalCost }} ₽</div>
     </div>
   </div>
 </template>
 
 <script>
 import vCartItem from './v-cart-item.vue';
-import { mapActions } from 'vuex';
-import { mapGetters } from 'vuex';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
   name: 'v-cart',
   components: { vCartItem },
-  // props: {
-  //   cart_data: {
-  //     type: Array,
-  //   },
-  // },
-  methods: {
-    ...mapActions([
-      'DELETE_FROM_CART',
-      'INCREMENT_CART_ITEM',
-      'DECREMENT_CART_ITEM',
-    ]),
-    deleteFromCart(index) {
-      this.DELETE_FROM_CART(index);
-    },
-    increment(index) {
-      this.INCREMENT_CART_ITEM(index);
-    },
-    decrement(index) {
-      this.DECREMENT_CART_ITEM(index);
-    },
-  },
-  computed: {
-    ...mapGetters(['CART']),
-    cartToralCost() {
+
+  setup() {
+    const store = useStore();
+    console.log;
+
+    const increment = (index) => store.commit('increment', index);
+    const decrement = (index) => store.commit('decrement', index);
+    const removeFromCart = (index) => store.commit('removeFromCart', index);
+
+    const cart = computed(() => store.getters.cart);
+
+    const cartTotalCost = computed(() => {
       let result = [];
 
-      if (this.CART.length) {
-        for (let item of this.CART) {
+      if (cart.value.length) {
+        for (let item of cart.value) {
           result.push(item.price * item.quantity);
         }
         result = result.reduce(function (sum, el) {
@@ -62,7 +51,15 @@ export default {
       } else {
         return 0;
       }
-    },
+    });
+
+    return {
+      increment,
+      decrement,
+      removeFromCart,
+      cart,
+      cartTotalCost,
+    };
   },
 };
 </script>

@@ -47,13 +47,9 @@ export default {
     const page = ref(1);
     const items_per_page = 9;
 
-    const getProducts = () => {
-      store.dispatch('GET_PRODUCTS_FROM_API');
-    };
+    const getProducts = () => store.dispatch('getProductsFromApi');
 
-    const addToCart = (data) => {
-      store.dispatch('ADD_TO_CART', data);
-    };
+    const addToCart = (data) => store.commit('addToCart', data);
 
     const changePage = (page_nam) => {
       page.value = page_nam;
@@ -65,12 +61,12 @@ export default {
       window.scrollTo(0, 0);
     };
 
-    const filteredProducts = computed(() => {
-      if (store.state.sortedProducts.length) {
-        return store.state.sortedProducts;
-      } else {
-        return store.state.products;
-      }
+    const products = computed(() => store.getters.products);
+
+    const sortedProducts = computed(() => store.getters.sortedProducts);
+
+    const pageCounts = computed(() => {
+      return Math.ceil(filteredProducts.value.length / items_per_page);
     });
 
     const paginatedProducts = computed(() => {
@@ -84,20 +80,17 @@ export default {
       }
     });
 
-    const pageCounts = computed(() => {
-      return Math.ceil(filteredProducts.value.length / items_per_page);
-    });
-
-    onMounted(() => {
-      getProducts();
-    });
-
-    watch(
-      () => store.state.sortedProducts,
-      () => {
-        changePage(1);
+    const filteredProducts = computed(() => {
+      if (sortedProducts.value.length) {
+        return sortedProducts.value;
+      } else {
+        return products.value;
       }
-    );
+    });
+
+    onMounted(() => getProducts());
+
+    watch(sortedProducts, () => changePage(1));
 
     return {
       page,

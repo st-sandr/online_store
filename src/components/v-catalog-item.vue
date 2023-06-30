@@ -23,16 +23,14 @@ export default {
       type: Object,
     },
   },
-  data() {
-    return {};
-  },
-  methods: {
-    addToCart() {
-      if (!this.product['quantity']) {
-        this.product['quantity'] = 1;
+  setup(props, context) {
+    const addToCart = () => {
+      if (!props.product['quantity']) {
+        props.product['quantity'] = 1;
       }
-      this.$emit('addToCart', this.product);
-    },
+      context.emit('addToCart', props.product);
+    };
+    return { addToCart };
   },
 };
 </script>

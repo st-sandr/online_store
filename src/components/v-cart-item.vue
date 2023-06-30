@@ -2,27 +2,27 @@
   <div class="v-cart-item">
     <div class="v-cart-item__content">
       <img
-        class="v-cart-item__image"
-        :src="require('@/assets/images/' + cart_item_data.image)"
+        class="v-cart-item__content__image"
+        :src="require('@/assets/images/' + cartItem.image)"
         alt="img"
       />
-      <div class="v-cart-item__info">
-        <div class="v-cart-item__info__title">
+      <div class="v-cart-item__content__info">
+        <div class="v-cart-item__content__info__title">
           <div>
-            <h3>{{ cart_item_data.name }}</h3>
-            <small>Артикул: {{ cart_item_data.article }}</small>
+            <h3>{{ cartItem.name }}</h3>
+            <small>Артикул: {{ cartItem.article }}</small>
           </div>
-          <div class="v-cart-item__info__feature">
-            <p>Цена: {{ cart_item_data.price }} ₽</p>
+          <div class="v-cart-item__content__info__feature">
+            <p>Цена: {{ cartItem.price }} ₽</p>
           </div>
         </div>
-        <div class="v-cart-item__quantity">
+        <div class="v-cart-item__content__info__quantity">
           <p>Кол-во</p>
           <span>
             <span class="v-cart-item__quantity_btn" @click="decrementItem"
               >-</span
             >
-            {{ cart_item_data.quantity }}
+            {{ cartItem.quantity }}
             <span class="v-cart-item__quantity_btn" @click="incrementItem"
               >+</span
             >
@@ -31,8 +31,8 @@
       </div>
     </div>
     <div class="v-cart-item__cost">
-      <button class="v-cart-item__btn" @click="deleteFromCart"></button>
-      <h3>{{ cart_item_data.price * cart_item_data.quantity }}</h3>
+      <button class="v-cart-item__btn" @click="removeFromCart"></button>
+      <h3>{{ cartItem.price * cartItem.quantity }}</h3>
     </div>
   </div>
 </template>
@@ -41,23 +41,22 @@
 export default {
   name: 'v-cart-item',
   props: {
-    cart_item_data: {
+    cartItem: {
       type: Object,
       default() {
         return {};
       },
     },
   },
-  methods: {
-    deleteFromCart() {
-      this.$emit('deleteFromCart');
-    },
-    incrementItem() {
-      this.$emit('increment');
-    },
-    decrementItem() {
-      this.$emit('decrement');
-    },
+  setup(props, context) {
+    const removeFromCart = () => context.emit('removeFromCart');
+    const incrementItem = () => context.emit('increment');
+    const decrementItem = () => context.emit('decrement');
+    return {
+      removeFromCart,
+      incrementItem,
+      decrementItem,
+    };
   },
 };
 </script>
@@ -70,49 +69,56 @@ export default {
   padding: $padding * 2;
   margin-top: $margin * 4;
   height: 200px;
+
+  &__btn {
+    border: none;
+    margin: $margin;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center center;
+    width: 25px;
+    height: 25px;
+    background-image: url('@/assets/icons/remove__cart.svg');
+    cursor: pointer;
+  }
+
   &__cost {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
   }
+
   &__content {
     display: flex;
-  }
-  &__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: $margin * 4;
-    align-items: flex-start;
-    &__title {
-      text-align: start;
+
+    &__image {
+      object-fit: contain;
+      height: 168px;
+      width: 150px;
     }
-    &__feature {
-      margin-top: $margin * 2;
-      font-size: 15px;
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: $margin * 4;
+      align-items: flex-start;
+
+      &__title {
+        text-align: start;
+      }
+
+      &__feature {
+        margin-top: $margin * 2;
+        font-size: 15px;
+      }
     }
-  }
-  &__image {
-    object-fit: contain;
-    height: 168px;
-    width: 150px;
   }
   &__quantity_btn {
     cursor: pointer;
   }
-}
-.v-cart-item__btn {
-  border: none;
-  margin: $margin;
-  display: inline-block;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-position: center center;
-  width: 25px;
-  height: 25px;
-  background-image: url('@/assets/icons/remove__cart.svg');
-  cursor: pointer;
 }
 </style>

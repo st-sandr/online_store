@@ -10,29 +10,35 @@
 
 <script>
 import vAccordion from './v-accordion .vue';
-import { mapActions } from 'vuex';
+import { useStore } from 'vuex';
+import { ref } from 'vue';
 
 export default {
   name: 'v-filters-menu',
   components: {
     vAccordion,
   },
-  data() {
-    return {
-      categories: [
-        { name: 'Все', value: 'all' },
-        { name: 'Мужские', value: 'м' },
-        { name: 'Женские', value: 'ж' },
-      ],
-      selected: 'Все',
+
+  setup() {
+    const store = useStore();
+    const categories = [
+      { name: 'Все', value: 'all' },
+      { name: 'Мужские', value: 'м' },
+      { name: 'Женские', value: 'ж' },
+    ];
+
+    const selected = ref('Все');
+
+    const sortByCategories = (option) => {
+      store.commit('sortByCategories', option);
+      selected.value = option.name;
     };
-  },
-  methods: {
-    ...mapActions(['SORT_BY_CATEGORIES']),
-    sortByCategories(option) {
-      this.SORT_BY_CATEGORIES(option);
-      this.selected = option.name;
-    },
+
+    return {
+      categories,
+      selected,
+      sortByCategories,
+    };
   },
 };
 </script>

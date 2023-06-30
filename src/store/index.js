@@ -8,21 +8,21 @@ export default createStore({
     cart: [],
   },
   getters: {
-    PRODUCTS(state) {
+    products(state) {
       return state.products;
     },
-    SORTED_PRODUCTS(state) {
+    sortedProducts(state) {
       return state.sortedProducts;
     },
-    CART(state) {
+    cart(state) {
       return state.cart;
     },
   },
   mutations: {
-    SET_PRODUCT_TO_STATE: (state, products) => {
+    setProductToState: (state, products) => {
       state.products = products;
     },
-    SET_CART: (state, product) => {
+    addToCart: (state, product) => {
       if (state.cart.length) {
         let isProductExists = false;
         state.cart.forEach(function (item) {
@@ -38,18 +38,18 @@ export default createStore({
         state.cart.push(product);
       }
     },
-    REMOVE_FROM_CART: (state, index) => {
+    removeFromCart: (state, index) => {
       state.cart.splice(index, 1);
     },
-    INCREMENT: (state, index) => {
+    increment: (state, index) => {
       state.cart[index].quantity++;
     },
-    DECREMENT: (state, index) => {
+    decrement: (state, index) => {
       if (state.cart[index].quantity > 1) {
         state.cart[index].quantity--;
       } else state.cart.splice(index, 1);
     },
-    CATEGORIES_SORT: (state, option) => {
+    sortByCategories: (state, option) => {
       state.sortedProducts = [];
       state.products.map((item) => {
         if (item.category === option.name) {
@@ -59,26 +59,11 @@ export default createStore({
     },
   },
   actions: {
-    GET_PRODUCTS_FROM_API({ commit }) {
+    getProductsFromApi({ commit }) {
       axios
         .get('http://localhost:3000/products')
-        .then((response) => commit('SET_PRODUCT_TO_STATE', response.data))
+        .then((response) => commit('setProductToState', response.data))
         .catch((error) => console.log(error));
-    },
-    ADD_TO_CART({ commit }, product) {
-      commit('SET_CART', product);
-    },
-    DELETE_FROM_CART({ commit }, index) {
-      commit('REMOVE_FROM_CART', index);
-    },
-    INCREMENT_CART_ITEM({ commit }, index) {
-      commit('INCREMENT', index);
-    },
-    DECREMENT_CART_ITEM({ commit }, index) {
-      commit('DECREMENT', index);
-    },
-    SORT_BY_CATEGORIES({ commit }, option) {
-      commit('CATEGORIES_SORT', option);
     },
   },
   modules: {},

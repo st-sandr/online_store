@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
   name: 'v-accordion ',
   props: {
@@ -31,18 +33,17 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      areOptionsVisible: true,
+  setup(props, context) {
+    const areOptionsVisible = ref(true);
+
+    const selectOption = (option) => {
+      context.emit('select', option);
     };
-  },
-  methods: {
-    selectOption(option) {
-      this.$emit('select', option);
-    },
-    hideSelect() {
-      this.areOptionsVisible = false;
-    },
+
+    return {
+      areOptionsVisible,
+      selectOption,
+    };
   },
 };
 </script>
