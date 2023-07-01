@@ -8,6 +8,9 @@ export default createStore({
     cart: [],
   },
   getters: {
+    product: (state) => (article) => {
+      return state.products.find((item) => item.article === article);
+    },
     products(state) {
       return state.products;
     },
@@ -15,6 +18,10 @@ export default createStore({
       return state.sortedProducts;
     },
     cart(state) {
+      return state.cart;
+    },
+    localCart(state) {
+      localStorage.setItem('localCart', JSON.stringify(state.cart));
       return state.cart;
     },
   },

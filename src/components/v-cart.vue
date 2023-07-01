@@ -13,6 +13,7 @@
       @decrement="decrement(index)"
     />
     <div v-if="cart.length" class="v-cart__total">
+      <button class="v-cart__total__btn btn">Купить</button>
       <div class="v-cart__total__price">Итого: {{ cartTotalCost }} ₽</div>
     </div>
   </div>
@@ -29,13 +30,13 @@ export default {
 
   setup() {
     const store = useStore();
-    console.log;
+    const cart1 = computed(() => JSON.parse(localStorage.getItem('localCart')));
 
     const increment = (index) => store.commit('increment', index);
     const decrement = (index) => store.commit('decrement', index);
     const removeFromCart = (index) => store.commit('removeFromCart', index);
 
-    const cart = computed(() => store.getters.cart);
+    const cart = computed(() => store.getters.localCart);
 
     const cartTotalCost = computed(() => {
       let result = [];
@@ -58,6 +59,7 @@ export default {
       decrement,
       removeFromCart,
       cart,
+      cart1,
       cartTotalCost,
     };
   },
@@ -73,6 +75,16 @@ export default {
     &__price {
       border: 1px solid #e4e4e4;
       padding: $padding * 2;
+    }
+    &__btn {
+      background-color: teal;
+      color: white;
+      &:hover {
+        background-color: rgb(2, 112, 112);
+      }
+      &:active {
+        background-color: rgb(2, 49, 49);
+      }
     }
   }
   &__empty-cart-text {

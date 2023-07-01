@@ -1,6 +1,7 @@
 <template>
   <div class="v-catalog-item">
     <img
+      @click="productClick"
       class="v-catalog-item__image"
       :src="require('@/assets/images/' + product.image)"
       alt="img"
@@ -30,7 +31,11 @@ export default {
       }
       context.emit('addToCart', props.product);
     };
-    return { addToCart };
+
+    const productClick = () =>
+      context.emit('productClick', props.product.article);
+
+    return { addToCart, productClick };
   },
 };
 </script>

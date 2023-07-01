@@ -4,6 +4,7 @@
     <div class="v-catalog__wrapper">
       <div class="v-catalog__wrapper__list">
         <v-catalog-item
+          @productClick="productClick"
           v-for="product in paginatedProducts"
           :key="product.article"
           :product="product"
@@ -32,6 +33,7 @@ import vFiltersMenu from './v-filters-menu.vue';
 import Paginate from 'vuejs-paginate-next';
 import { ref, onMounted, watch, computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'v-catalog',
@@ -43,13 +45,17 @@ export default {
 
   setup() {
     const store = useStore();
+    const router = useRouter();
     const paginated_product = ref([]);
     const page = ref(1);
     const items_per_page = 9;
 
     const getProducts = () => store.dispatch('getProductsFromApi');
 
-    const addToCart = (data) => store.commit('addToCart', data);
+    const addToCart = (product) => store.commit('addToCart', product);
+
+    const productClick = (article) =>
+      router.push({ name: 'product', query: { product: article } });
 
     const changePage = (page_nam) => {
       page.value = page_nam;
@@ -98,6 +104,7 @@ export default {
       pageCounts,
       addToCart,
       changePage,
+      productClick,
     };
   },
 };
