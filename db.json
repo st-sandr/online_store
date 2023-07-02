@@ -2,195 +2,219 @@
   "products": [
     {
       "image": "1.jpg",
-      "name": "T-shirt 1",
+      "name": "Чехол прозрачный с принтом",
       "price": 2100,
-      "article": "T1",
+      "article": "12pro-1",
       "available": true,
-      "category": "Мужские"
-    },
-    {
-      "image": "2.jpg",
-      "name": "T-shirt 2",
-      "price": 3150,
-      "article": "T2",
-      "available": true,
-      "category": "Женские"
-    },
-    {
-      "image": "3.jpg",
-      "name": "T-shirt 3",
-      "price": 4200,
-      "article": "T3",
-      "available": false,
-      "category": "Женские"
-    },
-    {
-      "image": "4.jpg",
-      "name": "T-shirt 4",
-      "price": 5300,
-      "article": "T4",
-      "available": true,
-      "category": "Мужские"
-    },
-    {
-      "image": "5.jpg",
-      "name": "T-shirt 5",
-      "price": 6500,
-      "article": "T5",
-      "available": false,
-      "category": "Женские"
-    },
-    {
-      "image": "6.jpeg",
-      "name": "T-shirt 6",
-      "price": 8700,
-      "article": "T6",
-      "available": true,
-      "category": "Женские"
-    },
-    {
-      "image": "7.jpg",
-      "name": "T-shirt 7",
-      "price": 2700,
-      "article": "T7",
-      "available": true,
-      "category": "Женские"
-    },
-    {
-      "image": "8.jpg",
-      "name": "T-shirt 8",
-      "price": 6150,
-      "article": "T8",
-      "available": true,
-      "category": "Мужские"
-    },
-    {
-      "image": "9.jpg",
-      "name": "T-shirt 9",
-      "price": 4800,
-      "article": "T9",
-      "available": false,
-      "category": "Мужские"
-    },
-    {
-      "image": "10.jpg",
-      "name": "T-shirt 10",
-      "price": 5300,
-      "article": "T10",
-      "available": true,
-      "category": "Мужские"
-    },
-    {
-      "image": "11.jpg",
-      "name": "T-shirt 11",
-      "price": 9800,
-      "article": "T11",
-      "available": false,
-      "category": "Женские"
-    },
-    {
-      "image": "12.jpg",
-      "name": "T-shirt 12",
-      "price": 4700,
-      "article": "T12",
-      "available": true,
-      "category": "Мужские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
       "image": "1.jpg",
-      "name": "T-shirt 13",
-      "price": 2100,
-      "article": "T13",
-      "available": true,
-      "category": "Мужские"
-    },
-    {
-      "image": "2.jpg",
-      "name": "T-shirt 14",
+      "name": "Чехол прозрачный с принтом",
       "price": 3150,
-      "article": "T14",
+      "article": "12pro-2",
       "available": true,
-      "category": "Женские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "3.jpg",
-      "name": "T-shirt 15",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 4200,
-      "article": "T15",
+      "article": "12pro-3",
       "available": false,
-      "category": "Женские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "4.jpg",
-      "name": "T-shirt 16",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 5300,
-      "article": "T16",
+      "article": "12pro-4",
       "available": true,
-      "category": "Мужские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "5.jpg",
-      "name": "T-shirt 17",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 6500,
-      "article": "T17",
+      "article": "12pro-5",
       "available": false,
-      "category": "Женские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "6.jpeg",
-      "name": "T-shirt 18",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 8700,
-      "article": "T18",
+      "article": "12pro-6",
       "available": true,
-      "category": "Женские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "7.jpg",
-      "name": "T-shirt 19",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 2700,
-      "article": "T19",
+      "article": "12pro-7",
       "available": true,
-      "category": "Женские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "8.jpg",
-      "name": "T-shirt 20",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 6150,
-      "article": "T20",
+      "article": "12pro-8",
       "available": true,
-      "category": "Мужские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "9.jpg",
-      "name": "T-shirt 21",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 4800,
-      "article": "T21",
+      "article": "12pro-9",
       "available": false,
-      "category": "Мужские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "10.jpg",
-      "name": "T-shirt 22",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 5300,
-      "article": "T22",
+      "article": "12pro-10",
       "available": true,
-      "category": "Мужские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "11.jpg",
-      "name": "T-shirt 23",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 9800,
-      "article": "T23",
+      "article": "12pro-11",
       "available": false,
-      "category": "Женские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     },
     {
-      "image": "12.jpg",
-      "name": "T-shirt 24",
+      "image": "1.jpg",
+      "name": "Чехол прозрачный с принтом",
       "price": 4700,
-      "article": "T24",
+      "article": "12pro-12",
       "available": true,
-      "category": "Мужские"
+      "category": "Прозрачный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 2100,
+      "article": "12pro-13",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 3150,
+      "article": "12pro-14",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 4200,
+      "article": "12pro-15",
+      "available": false,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 5300,
+      "article": "12pro-16",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 6500,
+      "article": "12pro-17",
+      "available": false,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 8700,
+      "article": "12pro-18",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 2700,
+      "article": "12pro-19",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 6150,
+      "article": "12pro-20",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 4800,
+      "article": "12pro-21",
+      "available": false,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 5300,
+      "article": "12pro-22",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 9800,
+      "article": "12pro-23",
+      "available": false,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол черный с принтом",
+      "price": 4700,
+      "article": "12pro-24",
+      "available": true,
+      "category": "Черный",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     }
   ]
 }

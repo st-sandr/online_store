@@ -3,9 +3,9 @@
     <div class="v-header__container">
       <nav>
         <ul class="v-header__nav-list">
-          <li class="v-header__nav-item">
+          <!-- <li class="v-header__nav-item">
             <a href="" class="nav-link">Главная</a>
-          </li>
+          </li> -->
           <li class="v-header__nav-item">
             <router-link :to="{ name: 'catalog' }" class="nav-link"
               >Каталог</router-link

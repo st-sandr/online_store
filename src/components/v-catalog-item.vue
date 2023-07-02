@@ -3,12 +3,19 @@
     <img
       @click="productClick"
       class="v-catalog-item__image"
-      :src="require('@/assets/images/' + product.image)"
+      :src="
+        require('@/assets/images/' +
+          product.category +
+          '/' +
+          product.article +
+          '/' +
+          product.image)
+      "
       alt="img"
     />
     <div class="v-catalog-item__info">
-      <p class="v-catalog-item__name">{{ product.name }}</p>
-      <p class="v-catalog-item__price">{{ product.price }} ₽</p>
+      <p class="v-catalog-item__info__name">{{ product.name }}</p>
+      <p class="v-catalog-item__info__price">{{ product.price }} ₽</p>
     </div>
     <button class="v-catalog-item__card_btn btn" @click="addToCart">
       Добавить в корзину
@@ -46,7 +53,7 @@ export default {
   flex: 1 1 30%;
   max-width: 30%;
   flex-direction: column;
-  height: 320px;
+  height: 370px;
   box-sizing: border-box;
   box-shadow: 0 0 8px 0 #e0e0e0;
   padding: $padding * 2 $padding * 2 $padding;
@@ -54,8 +61,17 @@ export default {
   justify-content: space-between;
   &__info {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin: $margin 20px;
+    &__name {
+      font-size: 14px;
+      margin-bottom: $margin;
+    }
+    &__price {
+      font-size: 18px;
+      font-weight: 600;
+    }
   }
   &__image {
     object-fit: contain;

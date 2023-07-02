@@ -3,7 +3,14 @@
     <div class="v-cart-item__content">
       <img
         class="v-cart-item__content__image"
-        :src="require('@/assets/images/' + cartItem.image)"
+        :src="
+          require('@/assets/images/' +
+            cartItem.category +
+            '/' +
+            cartItem.article +
+            '/' +
+            cartItem.image)
+        "
         alt="img"
       />
       <div class="v-cart-item__content__info">

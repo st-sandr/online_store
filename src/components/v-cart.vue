@@ -22,21 +22,14 @@
 <script>
 import vCartItem from './v-cart-item.vue';
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useStorage } from '@vueuse/core';
 
 export default {
   name: 'v-cart',
   components: { vCartItem },
 
   setup() {
-    const store = useStore();
-    const cart1 = computed(() => JSON.parse(localStorage.getItem('localCart')));
-
-    const increment = (index) => store.commit('increment', index);
-    const decrement = (index) => store.commit('decrement', index);
-    const removeFromCart = (index) => store.commit('removeFromCart', index);
-
-    const cart = computed(() => store.getters.localCart);
+    const cart = useStorage('cart', []);
 
     const cartTotalCost = computed(() => {
       let result = [];
@@ -54,12 +47,28 @@ export default {
       }
     });
 
+    const removeFromCart = (index) => {
+      cart.value.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart.value));
+    };
+
+    const increment = (index) => {
+      cart.value[index].quantity++;
+      localStorage.setItem('cart', JSON.stringify(cart.value));
+    };
+
+    const decrement = (index) => {
+      if (cart.value[index].quantity > 1) {
+        cart.value[index].quantity--;
+      } else cart.value.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart.value));
+    };
+
     return {
       increment,
       decrement,
       removeFromCart,
       cart,
-      cart1,
       cartTotalCost,
     };
   },

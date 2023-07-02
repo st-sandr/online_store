@@ -34,6 +34,7 @@ import Paginate from 'vuejs-paginate-next';
 import { ref, onMounted, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { useStorage } from '@vueuse/core';
 
 export default {
   name: 'v-catalog',
@@ -49,10 +50,31 @@ export default {
     const paginated_product = ref([]);
     const page = ref(1);
     const items_per_page = 9;
+    const cart = useStorage('cart', []);
 
     const getProducts = () => store.dispatch('getProductsFromApi');
 
-    const addToCart = (product) => store.commit('addToCart', product);
+    const addToCart = (product) => {
+      // if (!product['quantity']) {
+      //   product['quantity'] = 1;
+      // }
+
+      if (cart.value.length) {
+        let isProductExists = false;
+        cart.value.forEach(function (item) {
+          if (item.article === product.article) {
+            isProductExists = true;
+          }
+        });
+        if (!isProductExists) {
+          cart.value.push(product);
+          localStorage.setItem('cart', JSON.stringify(cart.value));
+        }
+      } else {
+        cart.value.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart.value));
+      }
+    };
 
     const productClick = (article) =>
       router.push({ name: 'product', query: { product: article } });
@@ -143,9 +165,11 @@ export default {
   padding: $padding 0;
   border-radius: $radius;
   &:hover {
+    color: white;
     background-color: $is_hover;
   }
   &:active {
+    color: white;
     background-color: $is_activ;
   }
 }

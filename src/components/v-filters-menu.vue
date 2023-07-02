@@ -23,8 +23,8 @@ export default {
     const store = useStore();
     const categories = [
       { name: 'Все', value: 'all' },
-      { name: 'Мужские', value: 'м' },
-      { name: 'Женские', value: 'ж' },
+      { name: 'Прозрачный', value: 'п' },
+      { name: 'Черный', value: 'ж' },
     ];
 
     const selected = ref('Все');

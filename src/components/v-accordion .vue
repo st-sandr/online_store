@@ -72,9 +72,11 @@ export default {
       padding: $padding;
       border-radius: 5px;
       &:hover {
+        color: white;
         background: $is_hover;
       }
       &:active {
+        color: white;
         background: $is_activ;
       }
     }

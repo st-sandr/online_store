@@ -20,41 +20,14 @@ export default createStore({
     cart(state) {
       return state.cart;
     },
-    localCart(state) {
-      localStorage.setItem('localCart', JSON.stringify(state.cart));
-      return state.cart;
-    },
+    // localCart(state) {
+    //   localStorage.setItem('localCart', JSON.stringify(state.cart));
+    //   return state.cart;
+    // },
   },
   mutations: {
     setProductToState: (state, products) => {
       state.products = products;
-    },
-    addToCart: (state, product) => {
-      if (state.cart.length) {
-        let isProductExists = false;
-        state.cart.forEach(function (item) {
-          if (item.article === product.article) {
-            isProductExists = true;
-            item.quantity++;
-          }
-        });
-        if (!isProductExists) {
-          state.cart.push(product);
-        }
-      } else {
-        state.cart.push(product);
-      }
-    },
-    removeFromCart: (state, index) => {
-      state.cart.splice(index, 1);
-    },
-    increment: (state, index) => {
-      state.cart[index].quantity++;
-    },
-    decrement: (state, index) => {
-      if (state.cart[index].quantity > 1) {
-        state.cart[index].quantity--;
-      } else state.cart.splice(index, 1);
     },
     sortByCategories: (state, option) => {
       state.sortedProducts = [];
