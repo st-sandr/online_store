@@ -44,7 +44,9 @@ const cartTotalCost = computed(() => {
     return 0;
   }
 });
-const showDialog = () => (isDialogVisible.value = true);
+const showDialog = () => {
+  (isDialogVisible.value = true), window.scrollTo(0, 0);
+};
 
 const removeFromCart = (index) => {
   cart.value.splice(index, 1);
