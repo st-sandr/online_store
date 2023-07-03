@@ -13,6 +13,7 @@
           </li>
         </ul>
       </nav>
+
       <router-link :to="{ name: 'cart' }" class="nav-link"
         ><button class="v-header__icon"></button
       ></router-link>

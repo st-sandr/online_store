@@ -35,6 +35,7 @@ import { ref, onMounted, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useStorage } from '@vueuse/core';
+import { useToast } from 'vue-toastification';
 
 export default {
   name: 'v-catalog',
@@ -51,28 +52,46 @@ export default {
     const page = ref(1);
     const items_per_page = 9;
     const cart = useStorage('cart', []);
+    const toast = useToast();
 
     const getProducts = () => store.dispatch('getProductsFromApi');
 
     const addToCart = (product) => {
-      // if (!product['quantity']) {
-      //   product['quantity'] = 1;
-      // }
-
       if (cart.value.length) {
         let isProductExists = false;
         cart.value.forEach(function (item) {
           if (item.article === product.article) {
             isProductExists = true;
+            toast('Товар уже в корзине', {
+              position: 'top-right',
+              timeout: 2000,
+              draggablePercent: 0.6,
+              hideProgressBar: true,
+              closeButton: 'button',
+            });
           }
         });
         if (!isProductExists) {
           cart.value.push(product);
           localStorage.setItem('cart', JSON.stringify(cart.value));
+          toast.success('Товар добавлен!', {
+            position: 'top-right',
+            timeout: 2000,
+            draggablePercent: 0.6,
+            hideProgressBar: true,
+            closeButton: 'button',
+          });
         }
       } else {
         cart.value.push(product);
         localStorage.setItem('cart', JSON.stringify(cart.value));
+        toast.success('Товар добавлен!', {
+          position: 'top-right',
+          timeout: 2000,
+          draggablePercent: 0.6,
+          hideProgressBar: true,
+          closeButton: 'button',
+        });
       }
     };
 
@@ -162,7 +181,7 @@ export default {
 }
 
 .page-item {
-  padding: $padding 0;
+  padding: $padding * 2 0;
   border-radius: $radius;
   &:hover {
     color: white;
@@ -174,13 +193,16 @@ export default {
   }
 }
 .page-link {
-  padding: $padding;
+  padding: $padding * 2;
   cursor: pointer;
 }
 @media (max-width: 599px) {
   .v-catalog {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    &__wrapper {
+      width: 100%;
+    }
   }
 }
 </style>

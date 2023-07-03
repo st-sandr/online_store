@@ -20,10 +20,6 @@ export default createStore({
     cart(state) {
       return state.cart;
     },
-    // localCart(state) {
-    //   localStorage.setItem('localCart', JSON.stringify(state.cart));
-    //   return state.cart;
-    // },
   },
   mutations: {
     setProductToState: (state, products) => {

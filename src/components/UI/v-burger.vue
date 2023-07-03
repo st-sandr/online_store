@@ -23,7 +23,7 @@
 import { ref } from 'vue';
 
 export default {
-  name: 'v-accordion ',
+  name: 'v-burger',
   props: {
     options: {
       type: Array,
@@ -57,7 +57,7 @@ export default {
   font-size: 14px;
   &__title {
     border: solid 1px $border_color;
-    padding: $padding $padding * 2;
+    padding: $padding * 2 $padding * 4;
   }
   &__options {
     border: solid 1px $border_color;
@@ -65,11 +65,11 @@ export default {
     top: 40px;
     right: 0;
     width: 100%;
-    padding: $padding $padding * 2;
+    padding: $padding * 2 $padding * 4;
     background-color: white;
     &__element {
       margin: 0;
-      padding: $padding;
+      padding: $padding * 2;
       border-radius: 5px;
       &:hover {
         color: white;

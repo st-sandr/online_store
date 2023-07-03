@@ -4,6 +4,7 @@
     <p class="v-cart__empty-cart-text" v-if="!cart.length">
       Добавьте товар в корзину...
     </p>
+    <v-credit-card v-model:show="isDialogVisible" />
     <v-cart-item
       v-for="(item, index) in cart"
       :key="item.article"
@@ -13,7 +14,7 @@
       @decrement="decrement(index)"
     />
     <div v-if="cart.length" class="v-cart__total">
-      <button class="v-cart__total__btn btn">Купить</button>
+      <button @click="showDialog" class="v-cart__total__btn btn">Купить</button>
       <div class="v-cart__total__price">Итого: {{ cartTotalCost }} ₽</div>
     </div>
   </div>
@@ -21,15 +22,17 @@
 
 <script>
 import vCartItem from './v-cart-item.vue';
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useStorage } from '@vueuse/core';
+import vCreditCard from './v-credit-card.vue';
 
 export default {
   name: 'v-cart',
-  components: { vCartItem },
+  components: { vCartItem, vCartItem, vCreditCard },
 
   setup() {
     const cart = useStorage('cart', []);
+    const isDialogVisible = ref(false);
 
     const cartTotalCost = computed(() => {
       let result = [];
@@ -46,6 +49,7 @@ export default {
         return 0;
       }
     });
+    const showDialog = () => (isDialogVisible.value = true);
 
     const removeFromCart = (index) => {
       cart.value.splice(index, 1);
@@ -65,9 +69,11 @@ export default {
     };
 
     return {
+      isDialogVisible,
       increment,
       decrement,
       removeFromCart,
+      showDialog,
       cart,
       cartTotalCost,
     };

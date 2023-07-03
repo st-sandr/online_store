@@ -9,15 +9,11 @@
 </template>
 
 <script>
-import vAccordion from './v-accordion .vue';
 import { useStore } from 'vuex';
 import { ref } from 'vue';
 
 export default {
   name: 'v-filters-menu',
-  components: {
-    vAccordion,
-  },
 
   setup() {
     const store = useStore();
@@ -48,5 +44,12 @@ export default {
   display: flex;
   flex-direction: column;
   width: 22%;
+}
+@media (max-width: 599px) {
+  .v-filters-menu {
+    display: none;
+    // margin-bottom: $margin * 2;
+    // width: 40%;
+  }
 }
 </style>
