@@ -10,19 +10,14 @@
 
 <script>
 import { useStore } from 'vuex';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export default {
   name: 'v-filters-menu',
 
   setup() {
     const store = useStore();
-    const categories = [
-      { name: 'Все', value: 'all' },
-      { name: 'Прозрачный', value: 'п' },
-      { name: 'Черный', value: 'ж' },
-    ];
-
+    const categories = computed(() => store.state.categories);
     const selected = ref('Все');
 
     const sortByCategories = (option) => {
@@ -48,8 +43,6 @@ export default {
 @media (max-width: 599px) {
   .v-filters-menu {
     display: none;
-    // margin-bottom: $margin * 2;
-    // width: 40%;
   }
 }
 </style>

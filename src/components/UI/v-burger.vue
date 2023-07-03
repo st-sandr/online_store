@@ -1,14 +1,13 @@
 <template>
-  <div class="v-accordion">
-    <p
-      class="v-accordion__title"
+  <div class="v-burger">
+    <span
+      class="v-burger__image"
       @click="areOptionsVisible = !areOptionsVisible"
     >
-      {{ selected }}
-    </p>
-    <div class="v-accordion__options" v-if="areOptionsVisible">
+    </span>
+    <div class="v-burger__options" v-if="areOptionsVisible">
       <p
-        class="v-accordion__options__element"
+        class="v-burger__options__element"
         v-for="option in options"
         :key="option.value"
         @click="selectOption(option)"
@@ -34,10 +33,11 @@ export default {
     },
   },
   setup(props, context) {
-    const areOptionsVisible = ref(true);
+    const areOptionsVisible = ref(false);
 
     const selectOption = (option) => {
       context.emit('select', option);
+      areOptionsVisible.value = false;
     };
 
     return {
@@ -49,22 +49,30 @@ export default {
 </script>
 
 <style lang="scss">
-.v-accordion {
+.v-burger {
   position: relative;
-  width: 100%;
   cursor: pointer;
   text-align: left;
   font-size: 14px;
-  &__title {
-    border: solid 1px $border_color;
-    padding: $padding * 2 $padding * 4;
+  &__image {
+    border: none;
+    margin: 10px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center center;
+    width: 25px;
+    height: 25px;
+    background-image: url('@/assets/icons/burger.svg');
+    cursor: pointer;
   }
   &__options {
     border: solid 1px $border_color;
     position: absolute;
-    top: 40px;
+    top: 64px;
     right: 0;
-    width: 100%;
+    width: 200px;
     padding: $padding * 2 $padding * 4;
     background-color: white;
     &__element {

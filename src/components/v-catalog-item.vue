@@ -90,17 +90,12 @@ export default {
     }
   }
 }
-// .v-catalog-item:not(:nth-child(3n + 3)) {
-//   margin-right: 30px;
-// }
+
 @media (min-width: 600px) and (max-width: 992px) {
   .v-catalog-item {
     flex: 1 1 47%;
     max-width: 47%;
   }
-  // .v-catalog-item:not(:nth-child(2n + 1)) {
-  //   margin-right: 10px;
-  // }
 }
 @media (max-width: 599px) {
   .v-catalog-item {

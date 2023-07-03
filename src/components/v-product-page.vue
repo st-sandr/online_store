@@ -150,6 +150,7 @@ export default {
   display: flex;
   justify-content: space-between;
   &__slider {
+    height: 80vh;
     flex-direction: column;
     flex: 1 1 25%;
   }
@@ -166,7 +167,7 @@ export default {
 
   &__image {
     width: 100%;
-    height: 100%;
+    height: 80vh;
     object-fit: contain;
   }
   &__buy {
@@ -190,7 +191,6 @@ export default {
   }
 }
 .splide {
-  height: 60hw;
   padding: 0;
 }
 .splide__arrow.splide__arrow {
@@ -232,9 +232,13 @@ export default {
   .v-product-page {
     display: flex;
     flex-direction: column;
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
     &__info {
       flex-direction: column-reverse;
-      justify-content: flex-start;
       margin-right: $margin * 2;
     }
     &__btn {

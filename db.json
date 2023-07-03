@@ -215,6 +215,114 @@
       "available": true,
       "category": "Черный",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 888,
+      "article": "12pro-25",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 634,
+      "article": "12pro-26",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 9800,
+      "article": "12pro-27",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 9800,
+      "article": "12pro-28",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-29",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-30",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-31",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-32",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-33",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-34",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-35",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+    },
+    {
+      "image": "1.jpg",
+      "name": "Чехол с принтом",
+      "price": 666,
+      "article": "12pro-36",
+      "available": false,
+      "category": "Фуллпринт",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
     }
   ]
 }

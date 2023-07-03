@@ -13,17 +13,41 @@
           </li>
         </ul>
       </nav>
-
-      <router-link :to="{ name: 'cart' }" class="nav-link"
-        ><button class="v-header__icon"></button
-      ></router-link>
+      <div class="v-header__container__menu">
+        <router-link :to="{ name: 'cart' }" class="nav-link"
+          ><button class="v-header__icon"></button
+        ></router-link>
+        <v-burger
+          class="v-header__container__menu__burger"
+          :options="categories"
+          :selected="selected"
+          @select="sortByCategories"
+        />
+      </div>
     </div>
   </header>
 </template>
 
 <script>
+import { useStore } from 'vuex';
+import { ref, computed } from 'vue';
+import vBurger from './UI/v-burger.vue';
+
 export default {
   name: 'v-header',
+  components: { vBurger },
+  setup() {
+    const store = useStore();
+    const categories = computed(() => store.state.categories);
+    const selected = ref('Все');
+
+    const sortByCategories = (option) => {
+      store.commit('sortByCategories', option);
+      selected.value = option.name;
+    };
+
+    return { selected, categories, sortByCategories };
+  },
 };
 </script>
 
@@ -45,6 +69,12 @@ export default {
     margin-left: auto;
     padding-left: $padding * 2;
     padding-right: $padding * 2;
+    &__menu {
+      display: flex;
+      &__burger {
+        display: none;
+      }
+    }
   }
   &__nav-list {
     display: flex;
@@ -79,6 +109,11 @@ export default {
     height: 25px;
     background-image: url('@/assets/icons/cart.svg');
     cursor: pointer;
+  }
+}
+@media (max-width: 599px) {
+  .v-header__container__menu__burger {
+    display: block;
   }
 }
 </style>

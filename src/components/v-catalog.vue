@@ -180,6 +180,10 @@ export default {
   align-items: flex-end;
 }
 
+.active {
+  background-color: teal;
+  color: white;
+}
 .page-item {
   padding: $padding * 2 0;
   border-radius: $radius;

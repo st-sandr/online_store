@@ -5,7 +5,12 @@ export default createStore({
   state: {
     products: [],
     sortedProducts: [],
-    cart: [],
+    categories: [
+      { name: 'Все', value: 'all' },
+      { name: 'Прозрачный', value: 'п' },
+      { name: 'Черный', value: 'ж' },
+      { name: 'Фуллпринт', value: 'ж' },
+    ],
   },
   getters: {
     product: (state) => (article) => {
@@ -16,9 +21,6 @@ export default createStore({
     },
     sortedProducts(state) {
       return state.sortedProducts;
-    },
-    cart(state) {
-      return state.cart;
     },
   },
   mutations: {

@@ -255,15 +255,6 @@ export default {
       }
     };
 
-    // function blr() {
-    //   let cr = document.getElementsByClassName('card--credit__card')[0];
-    //   cr.classList.remove('cvv-active');
-    // }
-    // function fcs() {
-    //   let cr = document.getElementsByClassName('card--credit__card')[0];
-    //   cr.classList.add('cvv-active');
-    // }
-
     return {
       Months,
       years,
