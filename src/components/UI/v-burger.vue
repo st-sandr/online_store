@@ -27,10 +27,6 @@ export default {
     options: {
       type: Array,
     },
-    selected: {
-      type: String,
-      default: '',
-    },
   },
   setup(props, context) {
     const areOptionsVisible = ref(false);
