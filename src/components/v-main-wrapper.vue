@@ -4,11 +4,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'v-name-wrapper',
-};
-</script>
+<script setup></script>
 
 <style>
 .v-main-wrapper {

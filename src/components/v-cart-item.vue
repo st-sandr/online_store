@@ -26,11 +26,11 @@
         <div class="v-cart-item__content__info__quantity">
           <p>Кол-во</p>
           <span>
-            <span class="v-cart-item__quantity_btn" @click="decrementItem"
+            <span class="v-cart-item__quantity_btn" @click="emit('decrement')"
               >-</span
             >
             {{ cartItem.quantity }}
-            <span class="v-cart-item__quantity_btn" @click="incrementItem"
+            <span class="v-cart-item__quantity_btn" @click="emit('increment')"
               >+</span
             >
           </span>
@@ -38,34 +38,22 @@
       </div>
     </div>
     <div class="v-cart-item__cost">
-      <button class="v-cart-item__btn" @click="removeFromCart"></button>
+      <button class="v-cart-item__btn" @click="emit('removeFromCart')"></button>
       <h3>{{ cartItem.price * cartItem.quantity }}</h3>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'v-cart-item',
-  props: {
-    cartItem: {
-      type: Object,
-      default() {
-        return {};
-      },
+<script setup>
+const props = defineProps({
+  cartItem: {
+    type: Object,
+    default() {
+      return {};
     },
   },
-  setup(props, context) {
-    const removeFromCart = () => context.emit('removeFromCart');
-    const incrementItem = () => context.emit('increment');
-    const decrementItem = () => context.emit('decrement');
-    return {
-      removeFromCart,
-      incrementItem,
-      decrementItem,
-    };
-  },
-};
+});
+const emit = defineEmits(['removeFromCart', 'increment', 'decrement']);
 </script>
 
 <style lang="scss" scoped>

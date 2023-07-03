@@ -11,7 +11,7 @@
         class="v-accordion__options__element"
         v-for="option in options"
         :key="option.value"
-        @click="selectOption(option)"
+        @click="emit('select', option)"
       >
         {{ option.name }}
       </p>
@@ -19,33 +19,22 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  name: 'v-accordion',
-  props: {
-    options: {
-      type: Array,
-    },
-    selected: {
-      type: String,
-      default: '',
-    },
+const props = defineProps({
+  options: {
+    type: Array,
   },
-  setup(props, context) {
-    const areOptionsVisible = ref(true);
-
-    const selectOption = (option) => {
-      context.emit('select', option);
-    };
-
-    return {
-      areOptionsVisible,
-      selectOption,
-    };
+  selected: {
+    type: String,
+    default: '',
   },
-};
+});
+
+const areOptionsVisible = ref(true);
+
+const emit = defineEmits(['select']);
 </script>
 
 <style lang="scss">

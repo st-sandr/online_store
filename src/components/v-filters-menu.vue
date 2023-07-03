@@ -8,29 +8,18 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useStore } from 'vuex';
 import { ref, computed } from 'vue';
+import vAccordion from '@/components/UI/v-accordion.vue';
 
-export default {
-  name: 'v-filters-menu',
+const store = useStore();
+const categories = computed(() => store.state.categories);
+const selected = ref('Все');
 
-  setup() {
-    const store = useStore();
-    const categories = computed(() => store.state.categories);
-    const selected = ref('Все');
-
-    const sortByCategories = (option) => {
-      store.commit('sortByCategories', option);
-      selected.value = option.name;
-    };
-
-    return {
-      categories,
-      selected,
-      sortByCategories,
-    };
-  },
+const sortByCategories = (option) => {
+  store.commit('sortByCategories', option);
+  selected.value = option.name;
 };
 </script>
 

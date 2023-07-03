@@ -1,7 +1,7 @@
 <template>
   <div class="v-catalog-item">
     <img
-      @click="productClick"
+      @click="emit('productClick', product.article)"
       class="v-catalog-item__image"
       :src="
         require('@/assets/images/' +
@@ -17,34 +17,22 @@
       <p class="v-catalog-item__info__name">{{ product.name }}</p>
       <p class="v-catalog-item__info__price">{{ product.price }} ₽</p>
     </div>
-    <button class="v-catalog-item__card_btn btn" @click="addToCart">
+    <button
+      class="v-catalog-item__card_btn btn"
+      @click="emit('addToCart', product)"
+    >
       Добавить в корзину
     </button>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'v-catalog-item',
-  props: {
-    product: {
-      type: Object,
-    },
+<script setup>
+const props = defineProps({
+  product: {
+    type: Object,
   },
-  setup(props, context) {
-    const addToCart = () => {
-      if (!props.product['quantity']) {
-        props.product['quantity'] = 1;
-      }
-      context.emit('addToCart', props.product);
-    };
-
-    const productClick = () =>
-      context.emit('productClick', props.product.article);
-
-    return { addToCart, productClick };
-  },
-};
+});
+const emit = defineEmits(['addToCart', 'productClick']);
 </script>
 
 <style lang="scss">

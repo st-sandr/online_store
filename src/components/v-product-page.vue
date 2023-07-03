@@ -71,7 +71,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { onMounted, computed } from 'vue';
@@ -79,50 +79,23 @@ import { useToast } from 'vue-toastification';
 // import '@splidejs/vue-splide/css/core';
 import '@splidejs/vue-splide/css/sea-green';
 
-export default {
-  name: 'v-product-page',
+const store = useStore();
+const route = useRoute();
+const toast = useToast();
 
-  setup() {
-    const store = useStore();
-    const route = useRoute();
-    const toast = useToast();
+const getProducts = () => store.dispatch('getProductsFromApi');
+const addToCart = () => {
+  if (!product.value['quantity']) {
+    product.value['quantity'] = 1;
+  }
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    const getProducts = () => store.dispatch('getProductsFromApi');
-    const addToCart = () => {
-      if (!product.value['quantity']) {
-        product.value['quantity'] = 1;
-      }
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-      if (cart.length) {
-        let isProductExists = false;
-        cart.forEach(function (item) {
-          if (item.article === product.value.article) {
-            isProductExists = true;
-            toast('Товар уже в корзине', {
-              position: 'top-right',
-              timeout: 2000,
-              draggablePercent: 0.6,
-              hideProgressBar: true,
-              closeButton: 'button',
-            });
-          }
-        });
-        if (!isProductExists) {
-          cart.push(product.value);
-          localStorage.setItem('cart', JSON.stringify(cart));
-          toast.success('Товар добавлен!', {
-            position: 'top-right',
-            timeout: 2000,
-            draggablePercent: 0.6,
-            hideProgressBar: true,
-            closeButton: 'button',
-          });
-        }
-      } else {
-        cart.push(product.value);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        toast.success('Товар добавлен!', {
+  if (cart.length) {
+    let isProductExists = false;
+    cart.forEach(function (item) {
+      if (item.article === product.value.article) {
+        isProductExists = true;
+        toast('Товар уже в корзине', {
           position: 'top-right',
           timeout: 2000,
           draggablePercent: 0.6,
@@ -130,16 +103,33 @@ export default {
           closeButton: 'button',
         });
       }
-    };
-
-    const product = computed(() => store.getters.product(route.query.product));
-    onMounted(() => getProducts());
-    return {
-      addToCart,
-      product,
-    };
-  },
+    });
+    if (!isProductExists) {
+      cart.push(product.value);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      toast.success('Товар добавлен!', {
+        position: 'top-right',
+        timeout: 2000,
+        draggablePercent: 0.6,
+        hideProgressBar: true,
+        closeButton: 'button',
+      });
+    }
+  } else {
+    cart.push(product.value);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    toast.success('Товар добавлен!', {
+      position: 'top-right',
+      timeout: 2000,
+      draggablePercent: 0.6,
+      hideProgressBar: true,
+      closeButton: 'button',
+    });
+  }
 };
+
+const product = computed(() => store.getters.product(route.query.product));
+onMounted(() => getProducts());
 </script>
 
 <style lang="scss">

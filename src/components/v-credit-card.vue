@@ -440,13 +440,6 @@ img {
   flex-direction: row-reverse;
 }
 
-.card__chip svg {
-  width: 58px;
-  height: 80px;
-  position: relative;
-  top: 7px;
-}
-
 .Cbody {
   width: 100%;
   height: 33px;

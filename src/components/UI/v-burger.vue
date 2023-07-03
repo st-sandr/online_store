@@ -10,7 +10,7 @@
         class="v-burger__options__element"
         v-for="option in options"
         :key="option.value"
-        @click="selectOption(option)"
+        @click="emit('select', option), closeList()"
       >
         {{ option.name }}
       </p>
@@ -18,30 +18,22 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  name: 'v-burger',
-  props: {
-    options: {
-      type: Array,
-    },
+const props = defineProps({
+  options: {
+    type: Array,
   },
-  setup(props, context) {
-    const areOptionsVisible = ref(false);
+});
 
-    const selectOption = (option) => {
-      context.emit('select', option);
-      areOptionsVisible.value = false;
-    };
+const areOptionsVisible = ref(false);
 
-    return {
-      areOptionsVisible,
-      selectOption,
-    };
-  },
+const closeList = () => {
+  areOptionsVisible.value = false;
 };
+
+const emit = defineEmits(['select']);
 </script>
 
 <style lang="scss">

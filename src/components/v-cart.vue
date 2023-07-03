@@ -20,64 +20,47 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import vCartItem from './v-cart-item.vue';
 import { ref, computed } from 'vue';
 import { useStorage } from '@vueuse/core';
 import vCreditCard from './v-credit-card.vue';
 
-export default {
-  name: 'v-cart',
-  components: { vCartItem, vCartItem, vCreditCard },
+const cart = useStorage('cart', []);
+const isDialogVisible = ref(false);
 
-  setup() {
-    const cart = useStorage('cart', []);
-    const isDialogVisible = ref(false);
+const cartTotalCost = computed(() => {
+  let result = [];
 
-    const cartTotalCost = computed(() => {
-      let result = [];
-
-      if (cart.value.length) {
-        for (let item of cart.value) {
-          result.push(item.price * item.quantity);
-        }
-        result = result.reduce(function (sum, el) {
-          return sum + el;
-        });
-        return result;
-      } else {
-        return 0;
-      }
+  if (cart.value.length) {
+    for (let item of cart.value) {
+      result.push(item.price * item.quantity);
+    }
+    result = result.reduce(function (sum, el) {
+      return sum + el;
     });
-    const showDialog = () => (isDialogVisible.value = true);
+    return result;
+  } else {
+    return 0;
+  }
+});
+const showDialog = () => (isDialogVisible.value = true);
 
-    const removeFromCart = (index) => {
-      cart.value.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart.value));
-    };
+const removeFromCart = (index) => {
+  cart.value.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart.value));
+};
 
-    const increment = (index) => {
-      cart.value[index].quantity++;
-      localStorage.setItem('cart', JSON.stringify(cart.value));
-    };
+const increment = (index) => {
+  cart.value[index].quantity++;
+  localStorage.setItem('cart', JSON.stringify(cart.value));
+};
 
-    const decrement = (index) => {
-      if (cart.value[index].quantity > 1) {
-        cart.value[index].quantity--;
-      } else cart.value.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart.value));
-    };
-
-    return {
-      isDialogVisible,
-      increment,
-      decrement,
-      removeFromCart,
-      showDialog,
-      cart,
-      cartTotalCost,
-    };
-  },
+const decrement = (index) => {
+  if (cart.value[index].quantity > 1) {
+    cart.value[index].quantity--;
+  } else cart.value.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart.value));
 };
 </script>
 

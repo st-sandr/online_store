@@ -28,26 +28,18 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import { useStore } from 'vuex';
 import { ref, computed } from 'vue';
 import vBurger from './UI/v-burger.vue';
 
-export default {
-  name: 'v-header',
-  components: { vBurger },
-  setup() {
-    const store = useStore();
-    const categories = computed(() => store.state.categories);
-    const selected = ref('Все');
+const store = useStore();
+const categories = computed(() => store.state.categories);
+const selected = ref('Все');
 
-    const sortByCategories = (option) => {
-      store.commit('sortByCategories', option);
-      selected.value = option.name;
-    };
-
-    return { selected, categories, sortByCategories };
-  },
+const sortByCategories = (option) => {
+  store.commit('sortByCategories', option);
+  selected.value = option.name;
 };
 </script>
 
