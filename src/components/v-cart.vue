@@ -69,7 +69,7 @@ const decrement = (index) => {
 <style lang="scss">
 .no_scroll {
   position: relative;
-  height: 88vh;
+  height: 77vh;
   width: 100%;
   overflow: hidden;
 }
