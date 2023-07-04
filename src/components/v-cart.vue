@@ -1,5 +1,5 @@
 <template>
-  <div class="v-cart">
+  <div class="v-cart" :class="{ no_scroll: isDialogVisible }">
     <h1>Корзина</h1>
     <p class="v-cart__empty-cart-text" v-if="!cart.length">
       Добавьте товар в корзину...
@@ -67,6 +67,13 @@ const decrement = (index) => {
 </script>
 
 <style lang="scss">
+.no_scroll {
+  position: relative;
+  height: 88vh;
+  width: 100%;
+  overflow: hidden;
+}
+
 .v-cart {
   &__total {
     display: flex;

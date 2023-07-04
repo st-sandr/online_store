@@ -1,92 +1,94 @@
 <template>
-  <div class="card" v-if="show" @mousedown.stop="hideDialog">
-    <div class="container">
-      <div @mousedown.stop class="card-container">
-        <div class="card--credit__card">
-          <div class="front">
-            <div class="Cheader">
-              <div v-show="cardType" class="card__logo">
-                <img v-bind:class="cClass" :src="cardType" alt="" />
+  <div :class="{ wrapper: show }" @mousedown.stop="hideDialog">
+    <div class="card" v-if="show">
+      <div class="container">
+        <div @mousedown.stop class="card-container">
+          <div class="card--credit__card">
+            <div class="front">
+              <div class="Cheader">
+                <div v-show="cardType" class="card__logo">
+                  <img v-bind:class="cClass" :src="cardType" alt="" />
+                </div>
+              </div>
+              <div class="Cbody">
+                <p>{{ cardNumber }}</p>
+              </div>
+              <div class="Cfooter">
+                <div class="name">
+                  <span>CARD HOLDER</span>
+                  <p class="name_p">{{ cardHolder }}</p>
+                </div>
+                <div class="expiration__data">
+                  <span>EXPIRES</span>
+                  <p v-if="monthSelection">
+                    {{ monthSelection }} / {{ yearSelection }}
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="Cbody">
-              <p>{{ cardNumber }}</p>
-            </div>
-            <div class="Cfooter">
-              <div class="name">
-                <span>CARD HOLDER</span>
-                <p class="name_p">{{ cardHolder }}</p>
+            <div class="back">
+              <div class="strip"></div>
+              <div class="cvv-container">
+                <p>cvv: {{ cvv }}</p>
+                <div class="cvv-strip"></div>
               </div>
-              <div class="expiration__data">
-                <span>EXPIRES</span>
-                <p v-if="monthSelection">
-                  {{ monthSelection }} / {{ yearSelection }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="back">
-            <div class="strip"></div>
-            <div class="cvv-container">
-              <p>cvv: {{ cvv }}</p>
-              <div class="cvv-strip"></div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div @mousedown.stop class="card--form">
-        <form>
-          <label for="cardNumber">Card Number</label>
-          <input
-            v-on:keyup="inputFormat()"
-            v-model="cardNumber"
-            maxlength="19"
-            type="text"
-            id="cardNumber"
-          />
-          <label for="cardName">Card Name</label>
-          <input
-            v-model="cardHolder"
-            maxlength="25"
-            type="text"
-            id="cardName"
-          />
-          <div class="date--expiration">
-            <div>
-              <select v-model="monthSelection" name="expirationDate__month">
-                <option value="">Month</option>
-                <option v-for="item in Months" :value="item.month">
-                  {{ item.month }}
-                </option>
-              </select>
-              <select v-model="yearSelection" name="expirationDate__year">
-                <option value="">Year</option>
-                <option v-for="item in years" :value="item.year">
-                  {{ item.year }}
-                </option>
-              </select>
+        <div @mousedown.stop class="card--form">
+          <form>
+            <label for="cardNumber">Card Number</label>
+            <input
+              v-on:keyup="inputFormat()"
+              v-model="cardNumber"
+              maxlength="19"
+              type="text"
+              id="cardNumber"
+            />
+            <label for="cardName">Card Name</label>
+            <input
+              v-model="cardHolder"
+              maxlength="25"
+              type="text"
+              id="cardName"
+            />
+            <div class="date--expiration">
+              <div>
+                <select v-model="monthSelection" name="expirationDate__month">
+                  <option value="">Month</option>
+                  <option v-for="item in Months" :value="item.month">
+                    {{ item.month }}
+                  </option>
+                </select>
+                <select v-model="yearSelection" name="expirationDate__year">
+                  <option value="">Year</option>
+                  <option v-for="item in years" :value="item.year">
+                    {{ item.year }}
+                  </option>
+                </select>
+              </div>
+              <div class="cvv">
+                <label for="cvvInput">CVV</label>
+                <input
+                  v-model="cvv"
+                  maxlength="4"
+                  type="text"
+                  id="cvvInput"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57 && /^\d{0,3}$/.test(this.value));"
+                />
+              </div>
             </div>
-            <div class="cvv">
-              <label for="cvvInput">CVV</label>
-              <input
-                v-model="cvv"
-                maxlength="4"
-                type="text"
-                id="cvvInput"
-                onkeypress="return (event.charCode >= 48 && event.charCode <= 57 && /^\d{0,3}$/.test(this.value));"
-              />
-            </div>
-          </div>
-        </form>
-        <button
-          @mousedown="mouseDw"
-          @mouseup="mouseUp"
-          :class="btnClassName"
-          class="CCbtn"
-        >
-          Submit
-        </button>
+          </form>
+          <button
+            @mousedown="mouseDw"
+            @mouseup="mouseUp"
+            :class="btnClassName"
+            class="CCbtn"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -258,42 +260,23 @@ const hideDialog = () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  background: #2e2e2e;
-  font-family: roboto, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
 .container {
   position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   height: 100%;
   width: 430px;
-}
-
-.card {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.card-container {
-  top: 10;
-  perspective: 1000px;
 }
 
 .card--credit__card {
@@ -466,7 +449,7 @@ img {
 .expiration__data p {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 14px;
 }
 
 .expiration__data span {
