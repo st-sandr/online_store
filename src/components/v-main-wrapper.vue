@@ -7,9 +7,5 @@
 <script setup></script>
 
 <style>
-.v-main-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 30px;
-}
+@import '/src/assets/styles/components/v-main-wrapper.scss';
 </style>

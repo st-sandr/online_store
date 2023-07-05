@@ -1,0 +1,10 @@
+.v-filters-menu {
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+}
+@media (max-width: 599px) {
+  .v-filters-menu {
+    display: none;
+  }
+}

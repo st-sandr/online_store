@@ -66,37 +66,6 @@ const decrement = (index) => {
 };
 </script>
 
-<style lang="scss">
-.no_scroll {
-  position: relative;
-  height: 77vh;
-  width: 100%;
-  overflow: hidden;
-}
-
-.v-cart {
-  &__total {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: $margin * 2;
-    &__price {
-      border: 1px solid #e4e4e4;
-      padding: $padding * 2;
-    }
-    &__btn {
-      background-color: teal;
-      color: white;
-      &:hover {
-        background-color: rgb(2, 112, 112);
-      }
-      &:active {
-        background-color: rgb(2, 49, 49);
-      }
-    }
-  }
-  &__empty-cart-text {
-    margin-top: 20px;
-    color: #e0e0e0;
-  }
-}
+<style lang="scss" scoped>
+@import '/src/assets/styles/components/v-cart.scss';
 </style>

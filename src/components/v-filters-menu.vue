@@ -24,14 +24,5 @@ const sortByCategories = (option) => {
 </script>
 
 <style lang="scss" scoped>
-.v-filters-menu {
-  display: flex;
-  flex-direction: column;
-  width: 22%;
-}
-@media (max-width: 599px) {
-  .v-filters-menu {
-    display: none;
-  }
-}
+@import '/src/assets/styles/components/v-filters-menu.scss';
 </style>

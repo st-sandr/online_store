@@ -1,76 +1,94 @@
 <template>
   <div :class="{ wrapper: show }" @mousedown.stop="hideDialog">
-    <div class="card" v-if="show">
-      <div class="container">
-        <div @mousedown.stop class="card-container">
-          <div class="card--credit__card">
-            <div class="front">
-              <div class="Cheader">
-                <div v-show="cardType" class="card__logo">
-                  <img v-bind:class="cClass" :src="cardType" alt="" />
-                </div>
-              </div>
-              <div class="Cbody">
-                <p>{{ cardNumber }}</p>
-              </div>
-              <div class="Cfooter">
-                <div class="name">
-                  <span>CARD HOLDER</span>
-                  <p class="name_p">{{ cardHolder }}</p>
-                </div>
-                <div class="expiration__data">
-                  <span>EXPIRES</span>
-                  <p v-if="monthSelection">
-                    {{ monthSelection }} / {{ yearSelection }}
-                  </p>
-                </div>
-              </div>
+    <div class="v-credit-card" v-if="show">
+      <div class="v-credit-card__container">
+        <div @mousedown.stop class="v-credit-card__container__card">
+          <div class="v-credit-card__container__card__header">
+            <div
+              v-show="cardType"
+              class="v-credit-card__container__card__header__logo"
+            >
+              <img v-bind:class="cClass" :src="cardType" alt="" />
             </div>
-            <div class="back">
-              <div class="strip"></div>
-              <div class="cvv-container">
-                <p>cvv: {{ cvv }}</p>
-                <div class="cvv-strip"></div>
-              </div>
+          </div>
+          <div class="v-credit-card__container__card__body">
+            <p class="v-credit-card__container__card__body__p">
+              {{ cardNumber }}
+            </p>
+          </div>
+          <div class="v-credit-card__container__card__footer">
+            <div class="v-credit-card__container__card__footer__name">
+              <span class="v-credit-card__container__card__footer__name__span"
+                >CARD HOLDER</span
+              >
+              <p>
+                {{ cardHolder }}
+              </p>
+            </div>
+            <div class="v-credit-card__container__card__footer__data">
+              <span class="v-credit-card__container__card__footer__data__span"
+                >EXPIRES</span
+              >
+              <p
+                class="v-credit-card__container__card__footer__data__p"
+                v-if="monthSelection"
+              >
+                {{ monthSelection }} / {{ yearSelection }}
+              </p>
             </div>
           </div>
         </div>
 
-        <div @mousedown.stop class="card--form">
-          <form>
-            <label for="cardNumber">Card Number</label>
+        <div @mousedown.stop class="v-credit-card__container__form">
+          <form class="v-credit-card__container__form__data">
+            <label for="v-credit-card__container__form__data__number"
+              >Card Number</label
+            >
             <input
+              class="input"
               v-on:keyup="inputFormat()"
               v-model="cardNumber"
               maxlength="19"
               type="text"
               id="cardNumber"
             />
-            <label for="cardName">Card Name</label>
+            <label for="v-credit-card__container__form__data__name"
+              >Card Name</label
+            >
             <input
+              class="input"
               v-model="cardHolder"
               maxlength="25"
               type="text"
               id="cardName"
             />
-            <div class="date--expiration">
+            <div class="v-credit-card__container__form__data__date">
               <div>
-                <select v-model="monthSelection" name="expirationDate__month">
+                <select
+                  v-model="monthSelection"
+                  name="expirationDate__month"
+                  class="v-credit-card__container__form__data__date__select"
+                >
                   <option value="">Month</option>
                   <option v-for="item in Months" :value="item.month">
                     {{ item.month }}
                   </option>
                 </select>
-                <select v-model="yearSelection" name="expirationDate__year">
+                <select
+                  v-model="yearSelection"
+                  name="expirationDate__year"
+                  class="v-credit-card__container__form__data__date__select"
+                >
                   <option value="">Year</option>
                   <option v-for="item in years" :value="item.year">
                     {{ item.year }}
                   </option>
                 </select>
               </div>
-              <div class="cvv">
+              <div class="v-credit-card__container__form__data__date__cvv">
                 <label for="cvvInput">CVV</label>
                 <input
+                  class="v-credit-card__container__form__data__date__cvv__input"
                   v-model="cvv"
                   maxlength="4"
                   type="text"
@@ -84,7 +102,7 @@
             @mousedown="mouseDw"
             @mouseup="mouseUp"
             :class="btnClassName"
-            class="CCbtn"
+            class="v-credit-card__container__form__btn"
           >
             Submit
           </button>
@@ -257,329 +275,8 @@ const hideDialog = () => {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-.wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.container {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 430px;
-}
-
-.card--credit__card {
-  width: 350px;
-  height: 200px;
-  border-radius: 10px;
-  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRtX-QkYwDKEXw_jriWgI5vplXUadOusPHRitOZKZCfBqJqK7IU');
-  background-size: cover;
-  position: relative;
-  z-index: 2;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.card--form {
-  width: 430px;
-  height: 460px;
-  background: #fff;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  position: absolute;
-  z-index: 1;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-form {
-  width: 100%;
-  height: 65%;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  font-size: 13px;
-}
-
-form input {
-  width: 90%;
-  height: 25px;
-  border: 2px solid #ccc;
-  outline: none;
-  border-radius: 5px;
-  padding-left: 5px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-label {
-  padding: 15px 0px 0px 20px;
-  color: #595959;
-}
-
-form input:focus {
-  box-shadow: 0 0 5px #d4eafd;
-  border-color: #4bdee5;
-}
-
-.date--expiration {
-  width: 90%;
-  height: 50px;
-  margin: 20px 0px 0px 0px;
-  padding: 0px 5px 0px 5px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.date--expiration input {
-  width: 100px;
-}
-
-select {
-  width: 100px;
-  height: 33px;
-  border: 2px solid #ccc;
-  outline: none;
-  border-radius: 5px;
-}
-
-.card__logo {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-  pointer-events: none;
-  margin-right: 5px;
-  margin-top: 5px;
-}
-
-img {
-  width: 60px;
-  height: 40px;
-  user-select: none;
-}
-
-.visa {
-  width: 58px;
-  height: 25px;
-}
-
-.elo {
-  height: 27px;
-}
-
-.Cheader {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  flex-direction: row-reverse;
-}
-
-.Cbody {
-  width: 100%;
-  height: 33px;
-  position: absolute;
-  bottom: 40%;
-  display: flex;
-  align-items: center;
-}
-
-.Cbody p {
-  font-size: 30px;
-  margin-left: 8%;
-  color: white;
-}
-
-.Cfooter {
-  width: 95%;
-  height: 33px;
-  position: absolute;
-  bottom: 6%;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.Cfooter .name {
-  width: 70%;
-  height: 100%;
-  color: white;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0;
-  margin-left: 10px;
-}
-
-.name span {
-  font-size: 10px;
-}
-
-.expiration__data {
-  width: 30%;
-  height: 100%;
-  color: white;
-}
-
-.expiration__data p {
-  position: absolute;
-  right: 0;
-  top: 14px;
-}
-
-.expiration__data span {
-  font-size: 10px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.CCbtn {
-  width: 90%;
-  height: 45px;
-  position: absolute;
-  bottom: 7%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: none;
-  border-radius: 4px;
-  background: #2e2e2e;
-  box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.3);
-  font-size: 20px;
-  color: white;
-  transition: 0.1s ease;
-  cursor: pointer;
-  outline: none;
-}
-
-.btn__active {
-  bottom: 6%;
-  left: 49%;
-}
-
-.card-container {
-  position: relative;
-  width: 350px;
-  height: 200px;
-  z-index: 2;
-  left: 40px;
-  top: 110px;
-}
-
-.card--credit__card {
-  position: absolute;
-  transition: 1s ease;
-  transform-style: preserve-3d;
-}
-
-.cvv-active {
-  transform: rotateY(180deg);
-}
-
-.front {
-  width: 350px;
-  height: 200px;
-}
-
-.front,
-.back {
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-.back {
-  width: 350px;
-  height: 200px;
-  color: white;
-  transform: rotateY(180deg);
-  border-radius: 10px;
-  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRtX-QkYwDKEXw_jriWgI5vplXUadOusPHRitOZKZCfBqJqK7IU');
-  background-size: cover;
-  z-index: 2;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.strip {
-  width: 100%;
-  height: 40px;
-  background: linear-gradient(135deg, #404040, #1a1a1a);
-  position: relative;
-  top: 25px;
-}
-
-.cvv-container {
-  width: 90%;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cvv-container p {
-  z-index: 2;
-  position: absolute;
-  left: 65%;
-  top: 25%;
-  color: black;
-  margin: 0;
-}
-
-.cvv-container .cvv-strip {
-  width: 100%;
-  height: 35px;
-  background: white;
-  position: absolute;
-  top: 5%;
-}
-
-.valid {
-  border-color: #4bb54380;
-  box-shadow: 0 0 2px #4bb54380;
-  background: #4bb54310;
-}
-
-.valid:focus {
-  border-color: #4bb54310;
-  box-shadow: 0 0 2px #4bb543;
-}
-
-.notValid {
-  border-color: #d8000c;
-  box-shadow: 0 0 2px #d8000c;
-  background: #d800bb10;
-}
-
-.notValid:focus {
-  border-color: #d8000c;
-  box-shadow: 0 0 2px #d8000c;
-  background: #d800bb10;
-}
+@import '/src/assets/styles/components/v-credit-card.scss';
 </style>
