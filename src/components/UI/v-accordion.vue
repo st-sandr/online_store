@@ -10,10 +10,10 @@
       <p
         class="v-accordion__options__element"
         v-for="option in options"
-        :key="option.value"
+        :key="option"
         @click="emit('select', option)"
       >
-        {{ option.name }}
+        {{ option }}
       </p>
     </div>
   </div>
@@ -24,7 +24,7 @@ import { ref } from 'vue';
 
 const props = defineProps({
   options: {
-    type: Array,
+    type: Object,
   },
   selected: {
     type: String,

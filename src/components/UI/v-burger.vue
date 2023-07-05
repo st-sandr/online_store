@@ -12,7 +12,7 @@
         :key="option.value"
         @click="emit('select', option), closeList()"
       >
-        {{ option.name }}
+        {{ option }}
       </p>
     </div>
   </div>

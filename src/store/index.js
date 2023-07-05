@@ -5,12 +5,7 @@ export default createStore({
   state: {
     products: [],
     sortedProducts: [],
-    categories: [
-      { name: 'Все', value: 'all' },
-      { name: 'Прозрачный', value: 'п' },
-      { name: 'Черный', value: 'ж' },
-      { name: 'Фуллпринт', value: 'ж' },
-    ],
+    categories: [],
   },
   getters: {
     product: (state) => (article) => {
@@ -27,10 +22,24 @@ export default createStore({
     setProductToState: (state, products) => {
       state.products = products;
     },
+    setCategoriesToState: (state, products) => {
+      const arr = [];
+      arr.push('Все');
+      arr.push(products[0].category);
+
+      products.forEach((item) => {
+        let acc = products[0];
+        if (item.category !== acc.category) {
+          arr.push(item.category);
+          acc = item;
+        }
+      });
+      state.categories = [...new Set(arr)];
+    },
     sortByCategories: (state, option) => {
       state.sortedProducts = [];
       state.products.map((item) => {
-        if (item.category === option.name) {
+        if (item.category === option) {
           state.sortedProducts.push(item);
         }
       });
@@ -40,7 +49,10 @@ export default createStore({
     getProductsFromApi({ commit }) {
       axios
         .get('http://localhost:3000/products')
-        .then((response) => commit('setProductToState', response.data))
+        .then((response) => {
+          commit('setProductToState', response.data);
+          commit('setCategoriesToState', response.data);
+        })
         .catch((error) => console.log(error));
     },
   },

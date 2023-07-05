@@ -19,7 +19,7 @@ const selected = ref('Все');
 
 const sortByCategories = (option) => {
   store.commit('sortByCategories', option);
-  selected.value = option.name;
+  selected.value = option;
 };
 </script>
 
